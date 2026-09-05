@@ -1,0 +1,35 @@
+[
+  {
+    "id": "env-dev",
+    "name": "Development",
+    "environment": "development",
+    "cluster": "Minikube / Local Docker",
+    "namespace": "forgeops-dev",
+    "status": "ACTIVE",
+    "createdBy": "system",
+    "createdAt": "2026-08-30T10:00:00.000Z",
+    "servicesCount": 2
+  },
+  {
+    "id": "env-stage",
+    "name": "Staging",
+    "environment": "staging",
+    "cluster": "Minikube / Kind",
+    "namespace": "forgeops-staging",
+    "status": "ACTIVE",
+    "createdBy": "system",
+    "createdAt": "2026-08-30T10:00:00.000Z",
+    "servicesCount": 1
+  },
+  {
+    "id": "env-prod",
+    "name": "Production",
+    "environment": "production",
+    "cluster": "AWS EKS Cluster (forgeops-prod)",
+    "namespace": "forgeops-prod",
+    "status": "ACTIVE",
+    "createdBy": "platform-admin",
+    "createdAt": "2026-08-30T10:00:00.000Z",
+    "servicesCount": 3
+  }
+]

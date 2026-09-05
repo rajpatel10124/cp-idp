@@ -1,0 +1,43 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "panels": [
+    {
+      "title": "HTTP Request Rate (req/sec)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "targets": [
+        { "expr": "sum(rate(http_request_duration_seconds_count[1m])) by (service)", "refId": "A" }
+      ]
+    },
+    {
+      "title": "HTTP Response Status Distribution (2xx, 4xx, 5xx)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "targets": [
+        { "expr": "sum(rate(http_request_duration_seconds_count[1m])) by (code)", "refId": "A" }
+      ]
+    },
+    {
+      "title": "Worker Processed Jobs Total",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 8 },
+      "targets": [
+        { "expr": "sum(worker_processed_jobs_total)", "refId": "A" }
+      ]
+    },
+    {
+      "title": "Worker Job Processing Latency (Seconds)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 18, "x": 6, "y": 8 },
+      "targets": [
+        { "expr": "worker_job_processing_seconds", "refId": "A" }
+      ]
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["idp", "microservices", "golden-path"],
+  "title": "IDP Microservices Application Telemetry"
+}

@@ -1,0 +1,8 @@
+site_name: '${{ values.component_id }} Documentation'
+site_description: '${{ values.description }}'
+
+plugins:
+  - techdocs-core
+
+nav:
+  - Home: index.md

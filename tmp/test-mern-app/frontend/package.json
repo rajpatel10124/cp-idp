@@ -1,0 +1,13 @@
+{
+  "name": "mern-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "scripts": {
+    "start": "echo 'Starting React Frontend'",
+    "build": "echo 'Building React Frontend'"
+  }
+}

@@ -1,0 +1,38 @@
+# ==============================================================================
+# IDP Platform Namespace Strategy
+# ==============================================================================
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: idp-system
+  labels:
+    name: idp-system
+    control-plane: backstage-idp
+    pod-security.kubernetes.io/enforce: baseline
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: dev
+  labels:
+    name: dev
+    environment: dev
+    pod-security.kubernetes.io/enforce: baseline
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: staging
+  labels:
+    name: staging
+    environment: staging
+    pod-security.kubernetes.io/enforce: baseline
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: prod
+  labels:
+    name: prod
+    environment: prod
+    pod-security.kubernetes.io/enforce: restricted

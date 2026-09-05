@@ -1,0 +1,14 @@
+{
+  "annotations": { "list": [] }, "editable": true, "schemaVersion": 38, "style": "dark", "refresh": "5s",
+  "title": "ForgeOps — Workload Observability", "uid": "forgeops-service-observability", "tags": ["forgeops", "cadvisor", "workload"],
+  "time": { "from": "now-15m", "to": "now" },
+  "templating": { "list": [{ "name": "workload", "label": "Workload", "type": "query", "datasource": { "type": "prometheus", "uid": "Prometheus" }, "definition": "label_values(container_cpu_usage_seconds_total{name!=\"\"}, name)", "query": "label_values(container_cpu_usage_seconds_total{name!=\"\"}, name)", "includeAll": false, "multi": false, "refresh": 1, "skipUrlSync": false }] },
+  "panels": [
+    { "id": 1, "title": "Container CPU Utilization (%)", "type": "timeseries", "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 }, "targets": [{ "datasource": { "type": "prometheus", "uid": "Prometheus" }, "editorMode": "code", "expr": "sum(rate(container_cpu_usage_seconds_total{name=~\"^$workload$\"}[5m])) * 100", "legendFormat": "CPU %", "range": true, "refId": "A" }] },
+    { "id": 2, "title": "Container Memory Usage (MiB)", "type": "timeseries", "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 }, "targets": [{ "datasource": { "type": "prometheus", "uid": "Prometheus" }, "editorMode": "code", "expr": "sum(container_memory_working_set_bytes{name=~\"^$workload$\"}) / 1024 / 1024", "legendFormat": "Memory MiB", "range": true, "refId": "A" }] },
+    { "id": 3, "title": "Container Network Receive (KiB/s)", "type": "timeseries", "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 }, "targets": [{ "datasource": { "type": "prometheus", "uid": "Prometheus" }, "editorMode": "code", "expr": "sum(rate(container_network_receive_bytes_total{name=~\"^$workload$\"}[5m])) / 1024", "legendFormat": "RX KiB/s", "range": true, "refId": "A" }] },
+    { "id": 4, "title": "Container Network Transmit (KiB/s)", "type": "timeseries", "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 }, "targets": [{ "datasource": { "type": "prometheus", "uid": "Prometheus" }, "editorMode": "code", "expr": "sum(rate(container_network_transmit_bytes_total{name=~\"^$workload$\"}[5m])) / 1024", "legendFormat": "TX KiB/s", "range": true, "refId": "A" }] },
+    { "id": 5, "title": "Workload Availability", "type": "stat", "gridPos": { "h": 5, "w": 6, "x": 0, "y": 16 }, "targets": [{ "datasource": { "type": "prometheus", "uid": "Prometheus" }, "editorMode": "code", "expr": "count(container_last_seen{name=~\"^$workload$\"})", "legendFormat": "Active container series", "refId": "A" }] },
+    { "id": 6, "title": "Running Container Series", "type": "stat", "gridPos": { "h": 5, "w": 6, "x": 6, "y": 16 }, "targets": [{ "datasource": { "type": "prometheus", "uid": "Prometheus" }, "editorMode": "code", "expr": "count(container_cpu_usage_seconds_total{name=~\"^$workload$\"})", "legendFormat": "Container series", "refId": "A" }] }
+  ]
+}

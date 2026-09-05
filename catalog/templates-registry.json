@@ -1,0 +1,43 @@
+[
+  {
+    "id": "rest-api",
+    "title": "REST API Microservice",
+    "description": "Scaffold a production-ready Express/Node.js REST API with health endpoints, Dockerfile, and K8s manifests.",
+    "category": "Backend Services",
+    "architecture": "Synchronous HTTP API",
+    "language": "Node.js / TypeScript",
+    "status": "ACTIVE",
+    "createdBy": "platform-team",
+    "createdAt": "2026-08-30T08:00:00.000Z",
+    "inputs": [
+      { "name": "component_id", "type": "string", "required": true, "label": "Service Name" },
+      { "name": "description", "type": "string", "required": true, "label": "Service Description" },
+      { "name": "owner", "type": "string", "required": true, "label": "Owner Team" },
+      { "name": "port", "type": "number", "required": true, "label": "HTTP Port" },
+      { "name": "environment", "type": "select", "options": ["development", "staging", "production"], "required": true, "label": "Target Environment" }
+    ],
+    "generatedFiles": [
+      "src/index.js", "Dockerfile", "k8s/deployment.yaml", "k8s/service.yaml", ".github/workflows/ci.yaml", "catalog-info.yaml", "docs/index.md"
+    ]
+  },
+  {
+    "id": "worker-service",
+    "title": "Background Worker Service",
+    "description": "Scaffold an asynchronous background queue consumer service with concurrency controls and metrics server.",
+    "category": "Data & Event Processing",
+    "architecture": "Asynchronous Event Consumer",
+    "language": "Node.js",
+    "status": "ACTIVE",
+    "createdBy": "platform-team",
+    "createdAt": "2026-08-30T08:00:00.000Z",
+    "inputs": [
+      { "name": "component_id", "type": "string", "required": true, "label": "Worker Name" },
+      { "name": "description", "type": "string", "required": true, "label": "Worker Description" },
+      { "name": "owner", "type": "string", "required": true, "label": "Owner Team" },
+      { "name": "telemetryPort", "type": "number", "required": true, "label": "Metrics Port" }
+    ],
+    "generatedFiles": [
+      "src/worker.js", "Dockerfile", "k8s/deployment.yaml", "catalog-info.yaml", "docs/index.md"
+    ]
+  }
+]

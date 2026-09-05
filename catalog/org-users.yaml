@@ -1,0 +1,105 @@
+# ==============================================================================
+# IDP Platform — Organization Users & Groups Catalog Entities
+# ==============================================================================
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: platform-division
+  title: Platform Division
+  description: Top-level platform division grouping all engineering teams.
+spec:
+  type: organization
+  profile:
+    displayName: Platform Division
+    email: platform@company.internal
+  children:
+    - team-platform
+    - team-backend
+    - team-data
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: product-engineering
+  title: Product Engineering
+  description: Product engineering group containing all product-facing teams.
+spec:
+  type: organization
+  profile:
+    displayName: Product Engineering
+    email: product@company.internal
+  children:
+    - team-backend
+    - team-data
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-platform
+  title: Platform Engineering Team
+  description: Responsible for IDP platform infrastructure, Kubernetes clusters, and Golden Paths.
+spec:
+  type: team
+  profile:
+    displayName: Platform Engineering
+    email: platform-team@company.internal
+  parent: platform-division
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-backend
+  title: Backend Core Services Team
+  description: Responsible for customer-facing order, payment, and core REST APIs.
+spec:
+  type: team
+  profile:
+    displayName: Backend Engineering
+    email: backend-team@company.internal
+  parent: product-engineering
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Group
+metadata:
+  name: team-data
+  title: Data & Analytics Engineering
+  description: Manages streaming telemetry, ETL workers, and data pipelines.
+spec:
+  type: team
+  profile:
+    displayName: Data Engineering
+    email: data-team@company.internal
+  parent: product-engineering
+  children: []
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: jane-smith
+  title: Jane Smith (Platform Lead)
+spec:
+  profile:
+    displayName: Jane Smith
+    email: jane.smith@company.internal
+  memberOf:
+    - team-platform
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: User
+metadata:
+  name: john-doe
+  title: John Doe (Senior Software Engineer)
+spec:
+  profile:
+    displayName: John Doe
+    email: john.doe@company.internal
+  memberOf:
+    - team-backend

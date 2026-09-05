@@ -1,0 +1,103 @@
+# ==============================================================================
+# Kyverno Admission Cluster Policies for IDP Kubernetes Clusters
+# Enforces required labels, non-root execution, resource limits & approved registries
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Policy 1: Require Mandatory Owner & Environment Labels
+# ------------------------------------------------------------------------------
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-mandatory-labels
+  annotations:
+    policies.kyverno.io/title: Require Owner and Environment Labels
+    policies.kyverno.io/category: IDP Governance
+    policies.kyverno.io/description: >-
+      Ensures all workload deployments possess owner and environment tags for catalog mapping.
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: check-labels
+      match:
+        any:
+          - resources:
+              kinds:
+                - Deployment
+                - Service
+      validate:
+        message: "Workloads must contain 'owner' and 'environment' labels."
+        pattern:
+          metadata:
+            labels:
+              owner: "?*"
+              environment: "?*"
+
+---
+# ------------------------------------------------------------------------------
+# Policy 2: Enforce Non-Root Container Security Context
+# ------------------------------------------------------------------------------
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: disallow-root-execution
+  annotations:
+    policies.kyverno.io/title: Disallow Root Container Execution
+    policies.kyverno.io/category: Pod Security Standards
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: check-non-root
+      match:
+        any:
+          - resources:
+              kinds:
+                - Pod
+                - Deployment
+      validate:
+        message: "Containers must run as non-root (runAsNonRoot: true)."
+        pattern:
+          spec:
+            template:
+              spec:
+                securityContext:
+                  runAsNonRoot: true
+
+---
+# ------------------------------------------------------------------------------
+# Policy 3: Enforce Resource Limits & Requests
+# ------------------------------------------------------------------------------
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-resource-limits
+  annotations:
+    policies.kyverno.io/title: Require CPU and Memory Limits
+    policies.kyverno.io/category: Resource Allocation
+spec:
+  validationFailureAction: Enforce
+  background: true
+  rules:
+    - name: check-resources
+      match:
+        any:
+          - resources:
+              kinds:
+                - Deployment
+      validate:
+        message: "Deployment containers must declare CPU and Memory requests and limits."
+        pattern:
+          spec:
+            template:
+              spec:
+                containers:
+                  - name: "*"
+                    resources:
+                      requests:
+                        cpu: "?*"
+                        memory: "?*"
+                      limits:
+                        cpu: "?*"
+                        memory: "?*"

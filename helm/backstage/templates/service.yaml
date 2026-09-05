@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: {{ .Release.Name }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP
+      name: http
+  selector:
+    app: {{ .Release.Name }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-secret
+  namespace: {{ .Release.Namespace }}
+type: Opaque
+stringData:
+  NODE_ENV: "{{ .Values.env.NODE_ENV }}"
+  APP_BASE_URL: "{{ .Values.env.APP_BASE_URL }}"
+  BACKEND_BASE_URL: "{{ .Values.env.BACKEND_BASE_URL }}"
+  GITHUB_TOKEN: "{{ .Values.secrets.GITHUB_TOKEN }}"
+  POSTGRES_PASSWORD: "{{ .Values.secrets.POSTGRES_PASSWORD }}"

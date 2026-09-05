@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ADMIN",
+    "name": "Platform Admin",
+    "description": "Full administrative access across platform infrastructure, RBAC, and policies.",
+    "isSystem": true,
+    "permissions": [
+      "catalog.read", "catalog.create", "catalog.update", "catalog.delete",
+      "goldenpath.read", "goldenpath.execute", "goldenpath.create", "goldenpath.update", "goldenpath.delete",
+      "deployment.read", "deployment.create", "deployment.delete", "deployment.rollback", "deployment.logs",
+      "terraform.read", "terraform.plan", "terraform.apply", "terraform.destroy",
+      "kubernetes.read", "kubernetes.manage",
+      "policy.read", "policy.create", "policy.update", "policy.delete", "policy.test",
+      "observability.read", "techdocs.read", "audit.read", "rbac.read", "rbac.manage", "admin.*"
+    ],
+    "status": "ACTIVE"
+  },
+  {
+    "id": "PLATFORM_ENGINEER",
+    "name": "Platform Engineer",
+    "description": "Manages platform templates, policy rules, Terraform IaC, and Kubernetes resources.",
+    "isSystem": true,
+    "permissions": [
+      "catalog.read", "catalog.create", "catalog.update",
+      "goldenpath.read", "goldenpath.execute", "goldenpath.create", "goldenpath.update",
+      "deployment.read", "deployment.create", "deployment.delete", "deployment.rollback", "deployment.logs",
+      "terraform.read", "terraform.plan", "terraform.apply",
+      "kubernetes.read", "kubernetes.manage",
+      "policy.read", "policy.create", "policy.update", "policy.test",
+      "observability.read", "techdocs.read", "audit.read", "rbac.read"
+    ],
+    "status": "ACTIVE"
+  },
+  {
+    "id": "DEVELOPER",
+    "name": "Software Developer",
+    "description": "Scaffolds new services via Golden Paths, triggers deployments, and monitors logs.",
+    "isSystem": true,
+    "permissions": [
+      "catalog.read", "catalog.create",
+      "goldenpath.read", "goldenpath.execute",
+      "deployment.read", "deployment.create", "deployment.logs",
+      "kubernetes.read",
+      "observability.read", "techdocs.read", "audit.read"
+    ],
+    "status": "ACTIVE"
+  },
+  {
+    "id": "VIEWER",
+    "name": "Read-Only Viewer",
+    "description": "Read-only access to view Software Catalog, TechDocs, and basic metrics.",
+    "isSystem": true,
+    "permissions": [
+      "catalog.read",
+      "goldenpath.read",
+      "deployment.read",
+      "observability.read",
+      "techdocs.read"
+    ],
+    "status": "ACTIVE"
+  }
+]

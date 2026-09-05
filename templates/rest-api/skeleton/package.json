@@ -1,0 +1,17 @@
+{
+  "name": "${{ values.component_id }}",
+  "version": "1.0.0",
+  "description": "${{ values.description }}",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test",
+    "lint": "echo 'No lint errors'"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "prom-client": "^15.1.0",
+    "winston": "^3.11.0"
+  }
+}

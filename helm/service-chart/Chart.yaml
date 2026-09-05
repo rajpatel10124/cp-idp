@@ -1,0 +1,6 @@
+apiVersion: v2
+name: service-chart
+description: Generic reusable Helm chart for IDP scaffolded REST APIs and Worker Services
+type: application
+version: 1.0.0
+appVersion: 1.0.0

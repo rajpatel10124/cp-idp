@@ -1,0 +1,195 @@
+# ==============================================================================
+# IDP Platform — Software Catalog Topology & Systems Definition
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# SYSTEMS
+# ------------------------------------------------------------------------------
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: ecommerce-system
+  title: E-Commerce Platform System
+  description: High-availability core platform for customer checkout, order processing, and payment processing.
+  tags:
+    - production
+    - tier-1
+spec:
+  owner: team-backend
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: idp-platform-system
+  title: Internal Developer Platform Infrastructure
+  description: Platform control plane including Backstage, Kubernetes, Telemetry, and IaC automation.
+  tags:
+    - platform
+    - internal
+spec:
+  owner: team-platform
+
+---
+# ------------------------------------------------------------------------------
+# COMPONENTS
+# ------------------------------------------------------------------------------
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: order-service
+  title: Order Processing REST API
+  description: Handles order placement, inventory reservations, and checkout workflows.
+  tags:
+    - rest-api
+    - nodejs
+    - golden-path
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    prometheus.io/rule: order-service-metrics
+    kubernetes.io/app: order-service
+spec:
+  type: service
+  lifecycle: production
+  owner: team-backend
+  system: ecommerce-system
+  providesApis:
+    - openapi-order-v1
+  dependsOn:
+    - component:default/payment-api
+    - resource:default/order-redis-cache
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: payment-api
+  title: Payment Processing Microservice
+  description: Securely processes customer credit transactions and integrates with external gateways.
+  tags:
+    - rest-api
+    - python
+    - PCI-DSS
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: service
+  lifecycle: production
+  owner: team-backend
+  system: ecommerce-system
+  providesApis:
+    - openapi-payment-v1
+  dependsOn:
+    - resource:default/payment-database
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: notification-worker
+  title: Notification Email & Push Worker
+  description: Background consumer service processing order events and firing email/SMS notifications.
+  tags:
+    - worker
+    - queue-consumer
+    - golden-path
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: service
+  lifecycle: production
+  owner: team-data
+  system: ecommerce-system
+  dependsOn:
+    - resource:default/order-redis-cache
+
+---
+# ------------------------------------------------------------------------------
+# API DEFINITIONS
+# ------------------------------------------------------------------------------
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: openapi-order-v1
+  title: Order Service OpenAPI v1 Specification
+  description: REST API definition for submitting and querying order state.
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-backend
+  system: ecommerce-system
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: Order API
+      version: 1.0.0
+    paths:
+      /api/v1/orders:
+        get:
+          summary: List active orders
+          responses:
+            '200':
+              description: OK
+        post:
+          summary: Create a new order
+          responses:
+            '201':
+              description: Created
+      /healthz:
+        get:
+          summary: Health check endpoint
+          responses:
+            '200':
+              description: Operational
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: openapi-payment-v1
+  title: Payment API Specification
+  description: REST API specification for authorization and captures.
+spec:
+  type: openapi
+  lifecycle: production
+  owner: team-backend
+  system: ecommerce-system
+  definition: |
+    openapi: 3.0.0
+    info:
+      title: Payment API
+      version: 1.0.0
+    paths:
+      /api/v1/payments/charge:
+        post:
+          summary: Execute payment authorization
+          responses:
+            '200':
+              description: Transaction Success
+
+---
+# ------------------------------------------------------------------------------
+# RESOURCES
+# ------------------------------------------------------------------------------
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: payment-database
+  title: PostgreSQL Payment Database Cluster
+  description: Amazon RDS PostgreSQL DB cluster storing encrypted transaction ledgers.
+spec:
+  type: database
+  owner: team-backend
+  system: ecommerce-system
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: order-redis-cache
+  title: ElastiCache Redis Event Queue
+  description: In-memory cache and pub/sub message buffer for high-throughput order events.
+spec:
+  type: cache
+  owner: team-backend
+  system: ecommerce-system

@@ -1,0 +1,30 @@
+{
+  "name": "idp-backstage-platform",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": "^18.18.0 || ^20.9.0 || >=22.0.0"
+  },
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "dev": "concurrently \"yarn workspace app start\" \"yarn workspace backend start\"",
+    "start": "yarn dev",
+    "build:backend": "yarn workspace backend build",
+    "build:all": "yarn workspaces run build",
+    "lint": "backstage-cli repo lint",
+    "test": "backstage-cli repo test",
+    "clean": "backstage-cli repo clean"
+  },
+  "dependencies": {
+    "@backstage/cli": "^0.26.0",
+    "concurrently": "^8.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.0"
+  }
+}

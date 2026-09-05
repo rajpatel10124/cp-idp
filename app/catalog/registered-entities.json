@@ -1,0 +1,135 @@
+{
+  "python-api": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "python-api",
+      "description": "python-api - Created via ForgeOps Golden Path",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "forgeops.io/created-via": "golden-path",
+        "forgeops.io/created-at": "2026-08-30T05:05:19.867Z"
+      },
+      "tags": [
+        "forgeops",
+        "golden-path"
+      ]
+    },
+    "spec": {
+      "type": "worker",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "app": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "app",
+      "description": "app - Created via ForgeOps Golden Path",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "forgeops.io/created-via": "golden-path",
+        "forgeops.io/created-at": "2026-08-30T05:19:23.929Z"
+      },
+      "tags": [
+        "forgeops",
+        "golden-path"
+      ]
+    },
+    "spec": {
+      "type": "worker",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "supportivesailers": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "supportivesailers",
+      "title": "supportivesailers",
+      "description": "supportivesailers - Deployed to local-docker from https://github.com/rajpatel10124/Supportivesailers",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "forgeops.io/repo-url": "https://github.com/rajpatel10124/Supportivesailers",
+        "forgeops.io/endpoint": "http://localhost:8765",
+        "forgeops.io/app-type": "Static Website",
+        "forgeops.io/target": "local-docker",
+        "forgeops.io/deployment-id": "dep-3164"
+      },
+      "tags": [
+        "forgeops",
+        "deployed",
+        "local-docker",
+        "static-website"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "production",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "static-site": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "static-site",
+      "title": "static-site",
+      "description": "static-site - Deployed to local-docker from https://github.com/rajpatel10124/online-app",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "forgeops.io/repo-url": "https://github.com/rajpatel10124/online-app",
+        "forgeops.io/endpoint": "http://localhost:8757",
+        "forgeops.io/app-type": "Static Website",
+        "forgeops.io/target": "local-docker",
+        "forgeops.io/deployment-id": "dep-8182"
+      },
+      "tags": [
+        "forgeops",
+        "deployed",
+        "local-docker",
+        "static-website"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "frontend": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "frontend",
+      "title": "frontend",
+      "description": "frontend - Deployed to local-docker from https://github.com/rajpatel10124/mern-ecommerce",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "forgeops.io/repo-url": "https://github.com/rajpatel10124/mern-ecommerce",
+        "forgeops.io/endpoint": "http://localhost:8286",
+        "forgeops.io/app-type": "Static Website",
+        "forgeops.io/target": "local-docker",
+        "forgeops.io/deployment-id": "dep-5687"
+      },
+      "tags": [
+        "forgeops",
+        "deployed",
+        "local-docker",
+        "static-website"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  }
+}

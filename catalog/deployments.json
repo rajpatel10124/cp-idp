@@ -1,0 +1,3837 @@
+[
+  {
+    "id": "dep-3211",
+    "serviceName": "analysis-1788272632245",
+    "repoUrl": "https://github.com/rajpatel10124/SupportiveSailers",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "SUCCESS",
+    "createdAt": "2026-09-01T14:24:03.211Z",
+    "commitSha": "64ecd27",
+    "logs": [
+      "[2026-09-01T14:24:03.211Z] Deployment queued for analysis-1788272632245 on target local-docker",
+      "[2026-09-01T14:24:03.219Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-09-01T14:24:03.226Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-09-01T14:24:03.374Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-09-01T14:24:03.380Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/SupportiveSailers...",
+      "[2026-09-01T14:24:06.721Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-09-01T14:24:06.728Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-09-01T14:24:06.734Z] Canonical Container Port: 5000",
+      "[2026-09-01T14:24:06.739Z] Service Name: analysis-1788272632245",
+      "[2026-09-01T14:24:06.744Z] Step 4/8: Building application container image...",
+      "[2026-09-01T14:24:06.750Z] Initiating build process for analysis-1788272632245 (Generic Web Application)...",
+      "[2026-09-01T14:24:06.756Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-3211/Dockerfile.",
+      "[2026-09-01T14:24:06.762Z] Executing 'docker build -t forgeops/analysis-1788272632245:64ecd27 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-3211\"'...",
+      "[2026-09-01T14:24:07.274Z] Docker build complete for forgeops/analysis-1788272632245:64ecd27.",
+      "[2026-09-01T14:24:07.280Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-09-01T14:24:07.322Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-09-01T14:24:07.370Z] [LOCAL DOCKER] Starting container 'forgeops-analysis-1788272632245-dep-3211' (-p 9524:5000)...",
+      "[2026-09-01T14:24:08.062Z] Step 6/8: Verifying health probe on endpoint http://localhost:9524...",
+      "[2026-09-01T14:24:08.068Z] [LOCAL DOCKER] Probing endpoint http://localhost:9524/...",
+      "[2026-09-01T14:24:12.219Z] 🛠️ [SELF-HEALING] Nginx container detected listening on port 80 (was mapped to 5000). Re-binding port map to 80...",
+      "[2026-09-01T14:24:13.463Z] 🛠️ [SELF-HEALING] Container re-launched with port mapping -p 9524:80.",
+      "[2026-09-01T14:24:15.497Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-09-01T14:24:15.505Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-09-01T14:24:15.513Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:9524"
+    ],
+    "repositoryModel": {
+      "name": "dep-3211",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Generic Web Application",
+      "services": [
+        {
+          "name": "dep-3211",
+          "type": "Generic Web Application",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        80
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/dep-3211:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Docker",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# 🚀 SmartRoute – Optimized Path Finder (Supportive Sailers)\n\nSmartRoute is a smart route planning web application designed to help delivery services and logistics teams find **fastest, traffic-optimized routes** between two locations using interactive map technology.\n\n🔗 **Live Demo**: [Click to view](https://harshtrivedi456.github.io/SupportiveSailers/)\n\n---\n\n## 📌 Features\n\n- 🗺️ Interactive Map using Leaflet.js\n- 📍 Input source and destination coordinates\n- 🚦 Optimized path rendering for t",
+        "detectedTechStack": [
+          "Redis"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Generic Web Application",
+    "containerPort": 5000,
+    "hostPort": 9524,
+    "containerId": "forgeops-analysis-1788272632245-dep-3211",
+    "endpoint": "http://localhost:9524",
+    "duration": "12s",
+    "completedAt": "2026-09-01T14:24:15.513Z"
+  },
+  {
+    "id": "dep-457849",
+    "serviceName": "apppp",
+    "repoUrl": "https://github.com/rajpatel10124/apppp",
+    "environment": "development",
+    "target": "nodejs",
+    "owner": "team-backend",
+    "namespace": "development",
+    "replicas": 2,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 8080,
+    "targetPort": 9090,
+    "healthEndpoint": "/healthz",
+    "status": "DELETED",
+    "createdAt": "2026-09-01T11:50:57.850Z",
+    "commitSha": "52ebb25",
+    "appType": "Node.js Application",
+    "endpoint": "http://localhost:9316",
+    "logs": [
+      "[2026-09-01T11:50:57.850Z] Golden Path service creation initiated for 'apppp'",
+      "[2026-09-01T11:50:57.850Z] OPA policy guardrails passed for owner 'team-backend' in environment 'development'",
+      "[2026-09-01T11:50:57.850Z] GitHub repository https://github.com/rajpatel10124/apppp created",
+      "[2026-09-01T11:50:57.850Z] Pushed 12 scaffold files from template 'worker-service' to repository",
+      "[2026-09-01T11:50:57.858Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-09-01T11:50:57.866Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-09-01T11:50:58.316Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-09-01T11:50:58.320Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/apppp...",
+      "[2026-09-01T11:50:59.941Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-09-01T11:50:59.954Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-09-01T11:50:59.959Z] Canonical Container Port: 9090",
+      "[2026-09-01T11:50:59.964Z] Service Name: apppp",
+      "[2026-09-01T11:50:59.969Z] Step 4/8: Building application container image...",
+      "[2026-09-01T11:50:59.975Z] Initiating build process for apppp (Node.js Application)...",
+      "[2026-09-01T11:50:59.980Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-457849/Dockerfile.",
+      "[2026-09-01T11:50:59.985Z] Executing 'docker build -t forgeops/apppp:52ebb25 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-457849\"'...",
+      "[2026-09-01T11:51:11.309Z] Docker build complete for forgeops/apppp:52ebb25.",
+      "[2026-09-01T11:51:11.313Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-09-01T11:51:11.429Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-09-01T11:51:11.465Z] [LOCAL DOCKER] Starting container 'forgeops-apppp-dep-457849' (-p 9316:9090)...",
+      "[2026-09-01T11:51:12.235Z] Step 6/8: Verifying health probe on endpoint http://localhost:9316...",
+      "[2026-09-01T11:51:12.244Z] [LOCAL DOCKER] Probing endpoint http://localhost:9316/healthz...",
+      "[2026-09-01T11:51:14.307Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-09-01T11:51:14.313Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-09-01T11:51:14.319Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:9316",
+      "[2026-09-01T13:15:22.366Z] Service and real cloud resources permanently deleted via Lifecycle Manager Engine."
+    ],
+    "repositoryModel": {
+      "name": "apppp",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "apppp",
+          "type": "Node.js Application",
+          "framework": "Express",
+          "port": 9090,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        9090
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/apppp:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [
+        "Prometheus"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# Golden Path: Background Worker Service\n\n> **Template:** `templates/worker-service/` · **Generated by:** ForgeOps IDP Golden Path Engine · **Backstage Role:** `service`\n\nThis Golden Path scaffolds a **production-ready asynchronous background worker microservice** designed for event-driven processing, queue consumption, and batch jobs — with dedicated Prometheus telemetry, non-root Docker builds, and Kubernetes manifests.\n\n---\n\n## What Gets Generated\n\n```\n{component_id}/\n├── src/\n│   └── worker.",
+        "detectedTechStack": [
+          "Express/Node.js",
+          "Redis",
+          "Kubernetes",
+          "Prometheus"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "containerPort": 9090,
+    "hostPort": 9316,
+    "envVars": {
+      "PORT": "9090",
+      "NODE_ENV": "production",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "containerId": "forgeops-apppp-dep-457849",
+    "duration": "16s",
+    "completedAt": "2026-09-01T13:15:22.366Z"
+  },
+  {
+    "id": "dep-029080",
+    "serviceName": "newwwww",
+    "repoUrl": "https://github.com/rajpatel10124/newwwwww",
+    "environment": "development",
+    "target": "nodejs",
+    "owner": "team-backend",
+    "namespace": "development",
+    "replicas": 2,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 8080,
+    "targetPort": 9090,
+    "healthEndpoint": "/healthz",
+    "status": "DELETED",
+    "createdAt": "2026-09-01T11:43:49.080Z",
+    "commitSha": "e44ee7e",
+    "appType": "Node.js Application",
+    "endpoint": "http://localhost:8851",
+    "logs": [
+      "[2026-09-01T11:43:49.080Z] Golden Path service creation initiated for 'newwwww'",
+      "[2026-09-01T11:43:49.080Z] OPA policy guardrails passed for owner 'team-backend' in environment 'development'",
+      "[2026-09-01T11:43:49.080Z] GitHub repository https://github.com/rajpatel10124/newwwwww created",
+      "[2026-09-01T11:43:49.080Z] Pushed 10 scaffold files from template 'worker-service' to repository",
+      "[2026-09-01T11:43:49.087Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-09-01T11:43:49.093Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-09-01T11:43:51.593Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-09-01T11:43:51.597Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/newwwwww...",
+      "[2026-09-01T11:43:53.104Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-09-01T11:43:53.113Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-09-01T11:43:53.118Z] Canonical Container Port: 9090",
+      "[2026-09-01T11:43:53.123Z] Service Name: newwwww",
+      "[2026-09-01T11:43:53.127Z] Step 4/8: Building application container image...",
+      "[2026-09-01T11:43:53.131Z] Initiating build process for newwwww (Node.js Application)...",
+      "[2026-09-01T11:43:53.136Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-029080/Dockerfile.",
+      "[2026-09-01T11:43:53.139Z] Executing 'docker build -t forgeops/newwwww:e44ee7e \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-029080\"'...",
+      "[2026-09-01T11:44:08.942Z] Docker build complete for forgeops/newwwww:e44ee7e.",
+      "[2026-09-01T11:44:08.946Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-09-01T11:44:09.208Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-09-01T11:44:09.306Z] [LOCAL DOCKER] Starting container 'forgeops-newwwww-dep-029080' (-p 8851:9090)...",
+      "[2026-09-01T11:44:10.996Z] Step 6/8: Verifying health probe on endpoint http://localhost:8851...",
+      "[2026-09-01T11:44:11.002Z] [LOCAL DOCKER] Probing endpoint http://localhost:8851/healthz...",
+      "[2026-09-01T11:44:13.063Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-09-01T11:44:13.067Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-09-01T11:44:13.074Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:8851",
+      "[2026-09-01T14:24:46.551Z] Service and real cloud resources permanently deleted via Lifecycle Manager Engine."
+    ],
+    "repositoryModel": {
+      "name": "newwwww",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "newwwww",
+          "type": "Node.js Application",
+          "framework": "Express",
+          "port": 9090,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        9090
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/newwwww:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [
+        "Prometheus"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# Golden Path: Background Worker Service\n\n> **Template:** `templates/worker-service/` · **Generated by:** ForgeOps IDP Golden Path Engine · **Backstage Role:** `service`\n\nThis Golden Path scaffolds a **production-ready asynchronous background worker microservice** designed for event-driven processing, queue consumption, and batch jobs — with dedicated Prometheus telemetry, non-root Docker builds, and Kubernetes manifests.\n\n---\n\n## What Gets Generated\n\n```\n{component_id}/\n├── src/\n│   └── worker.",
+        "detectedTechStack": [
+          "Express/Node.js",
+          "Redis",
+          "Kubernetes",
+          "Prometheus"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "containerPort": 9090,
+    "hostPort": 8851,
+    "envVars": {
+      "PORT": "9090",
+      "NODE_ENV": "production",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "containerId": "forgeops-newwwww-dep-029080",
+    "duration": "24s",
+    "completedAt": "2026-09-01T14:24:46.551Z"
+  },
+  {
+    "id": "dep-9216",
+    "serviceName": "analysis-1788262768872",
+    "repoUrl": "https://github.com/rajpatel10124/SupportiveSailers",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "SUCCESS",
+    "createdAt": "2026-09-01T11:39:39.216Z",
+    "commitSha": "64ecd27",
+    "logs": [
+      "[2026-09-01T11:39:39.216Z] Deployment queued for analysis-1788262768872 on target local-docker",
+      "[2026-09-01T11:39:39.221Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-09-01T11:39:39.227Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-09-01T11:39:39.301Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-09-01T11:39:39.306Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/SupportiveSailers...",
+      "[2026-09-01T11:39:41.676Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-09-01T11:39:41.682Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-09-01T11:39:41.687Z] Canonical Container Port: 5000",
+      "[2026-09-01T11:39:41.690Z] Service Name: analysis-1788262768872",
+      "[2026-09-01T11:39:41.695Z] Step 4/8: Building application container image...",
+      "[2026-09-01T11:39:41.699Z] Initiating build process for analysis-1788262768872 (Generic Web Application)...",
+      "[2026-09-01T11:39:41.703Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-9216/Dockerfile.",
+      "[2026-09-01T11:39:41.707Z] Executing 'docker build -t forgeops/analysis-1788262768872:64ecd27 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-9216\"'...",
+      "[2026-09-01T11:39:42.261Z] Docker build complete for forgeops/analysis-1788262768872:64ecd27.",
+      "[2026-09-01T11:39:42.266Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-09-01T11:39:42.317Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-09-01T11:39:42.356Z] [LOCAL DOCKER] Starting container 'forgeops-analysis-1788262768872-dep-9216' (-p 8761:5000)...",
+      "[2026-09-01T11:39:44.815Z] Step 6/8: Verifying health probe on endpoint http://localhost:8761...",
+      "[2026-09-01T11:39:44.820Z] [LOCAL DOCKER] Probing endpoint http://localhost:8761/...",
+      "[2026-09-01T11:39:48.937Z] 🛠️ [SELF-HEALING] Nginx container detected listening on port 80 (was mapped to 5000). Re-binding port map to 80...",
+      "[2026-09-01T11:39:49.923Z] 🛠️ [SELF-HEALING] Container re-launched with port mapping -p 8761:80.",
+      "[2026-09-01T11:39:51.947Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-09-01T11:39:51.952Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-09-01T11:39:51.958Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:8761"
+    ],
+    "repositoryModel": {
+      "name": "dep-9216",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Generic Web Application",
+      "services": [
+        {
+          "name": "dep-9216",
+          "type": "Generic Web Application",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        80
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/dep-9216:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Docker",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# 🚀 SmartRoute – Optimized Path Finder (Supportive Sailers)\n\nSmartRoute is a smart route planning web application designed to help delivery services and logistics teams find **fastest, traffic-optimized routes** between two locations using interactive map technology.\n\n🔗 **Live Demo**: [Click to view](https://harshtrivedi456.github.io/SupportiveSailers/)\n\n---\n\n## 📌 Features\n\n- 🗺️ Interactive Map using Leaflet.js\n- 📍 Input source and destination coordinates\n- 🚦 Optimized path rendering for t",
+        "detectedTechStack": [
+          "Redis"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Generic Web Application",
+    "containerPort": 5000,
+    "hostPort": 8761,
+    "containerId": "forgeops-analysis-1788262768872-dep-9216",
+    "endpoint": "http://localhost:8761",
+    "duration": "13s",
+    "completedAt": "2026-09-01T11:39:51.958Z"
+  },
+  {
+    "id": "dep-725915",
+    "serviceName": "new-sample",
+    "repoUrl": "https://github.com/rajpatel10124/new-sample",
+    "environment": "development",
+    "target": "nodejs",
+    "owner": "team-backend",
+    "namespace": "development",
+    "replicas": 2,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 8080,
+    "targetPort": 9090,
+    "healthEndpoint": "/healthz",
+    "status": "FAILED",
+    "createdAt": "2026-09-01T11:38:45.915Z",
+    "commitSha": "0acc86e",
+    "appType": "Node.js Application",
+    "endpoint": "http://localhost:8080",
+    "logs": [
+      "[2026-09-01T11:38:45.915Z] Golden Path service creation initiated for 'new-sample'",
+      "[2026-09-01T11:38:45.915Z] OPA policy guardrails passed for owner 'team-backend' in environment 'development'",
+      "[2026-09-01T11:38:45.915Z] GitHub repository https://github.com/rajpatel10124/new-sample created",
+      "[2026-09-01T11:38:45.915Z] Pushed 10 scaffold files from template 'worker-service' to repository",
+      "[2026-09-01T11:38:45.921Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-09-01T11:38:45.927Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-09-01T11:38:46.097Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-09-01T11:38:46.102Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/new-sample...",
+      "[2026-09-01T11:38:47.818Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-09-01T11:38:47.826Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-09-01T11:38:47.830Z] Canonical Container Port: 9090",
+      "[2026-09-01T11:38:47.836Z] Service Name: new-sample",
+      "[2026-09-01T11:38:47.839Z] Step 4/8: Building application container image...",
+      "[2026-09-01T11:38:47.843Z] Initiating build process for new-sample (Node.js Application)...",
+      "[2026-09-01T11:38:47.848Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-725915/Dockerfile.",
+      "[2026-09-01T11:38:47.852Z] Executing 'docker build -t forgeops/new-sample:0acc86e \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-725915\"'...",
+      "[2026-09-01T11:38:47.973Z] BUILD_FAILED: Docker build failed for new-sample: Command failed: docker build -t forgeops/new-sample:0acc86e \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-725915\"\nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nError response from daemon: failed to parse Dockerfile: Syntax error - can't find = in \"values.concurrency\". Must be of the form: name=value\n",
+      "[2026-09-01T11:38:47.978Z] DEPLOYMENT FAILED: Docker build failed for new-sample: Command failed: docker build -t forgeops/new-sample:0acc86e \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-725915\"\nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nError response from daemon: failed to parse Dockerfile: Syntax error - can't find = in \"values.concurrency\". Must be of the form: name=value\n"
+    ],
+    "repositoryModel": {
+      "name": "new-sample",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "new-sample",
+          "type": "Node.js Application",
+          "framework": "Express",
+          "port": 9090,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        9090
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/new-sample:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [
+        "Prometheus"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# Golden Path: Background Worker Service\n\n> **Template:** `templates/worker-service/` · **Generated by:** ForgeOps IDP Golden Path Engine · **Backstage Role:** `service`\n\nThis Golden Path scaffolds a **production-ready asynchronous background worker microservice** designed for event-driven processing, queue consumption, and batch jobs — with dedicated Prometheus telemetry, non-root Docker builds, and Kubernetes manifests.\n\n---\n\n## What Gets Generated\n\n```\n{component_id}/\n├── src/\n│   └── worker.",
+        "detectedTechStack": [
+          "Express/Node.js",
+          "Redis",
+          "Kubernetes",
+          "Prometheus"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "containerPort": 9090,
+    "hostPort": 8733,
+    "envVars": {
+      "PORT": "9090",
+      "NODE_ENV": "production"
+    },
+    "error": "Docker build failed for new-sample: Command failed: docker build -t forgeops/new-sample:0acc86e \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-725915\"\nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nError response from daemon: failed to parse Dockerfile: Syntax error - can't find = in \"values.concurrency\". Must be of the form: name=value\n",
+    "duration": "2s"
+  },
+  {
+    "id": "dep-151034",
+    "serviceName": "try-sample",
+    "repoUrl": "https://github.com/rajpatel10124/try-sample",
+    "environment": "development",
+    "target": "nodejs",
+    "owner": "team-backend",
+    "namespace": "development",
+    "replicas": 2,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 8080,
+    "targetPort": 9090,
+    "healthEndpoint": "/healthz",
+    "status": "FAILED",
+    "createdAt": "2026-09-01T11:29:11.034Z",
+    "commitSha": "188e720",
+    "appType": "Node.js Application",
+    "endpoint": "http://localhost:8080",
+    "logs": [
+      "[2026-09-01T11:29:11.034Z] Golden Path service creation initiated for 'try-sample'",
+      "[2026-09-01T11:29:11.034Z] OPA policy guardrails passed for owner 'team-backend' in environment 'development'",
+      "[2026-09-01T11:29:11.034Z] GitHub repository https://github.com/rajpatel10124/try-sample created",
+      "[2026-09-01T11:29:11.034Z] Pushed 9 scaffold files from template 'worker-service' to repository",
+      "[2026-09-01T11:29:11.042Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-09-01T11:29:11.048Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-09-01T11:29:14.001Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-09-01T11:29:14.004Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/try-sample...",
+      "[2026-09-01T11:29:15.603Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-09-01T11:29:15.614Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-09-01T11:29:15.619Z] Canonical Container Port: 9090",
+      "[2026-09-01T11:29:15.623Z] Service Name: try-sample",
+      "[2026-09-01T11:29:15.629Z] Step 4/8: Building application container image...",
+      "[2026-09-01T11:29:15.634Z] Initiating build process for try-sample (Node.js Application)...",
+      "[2026-09-01T11:29:15.639Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-151034/Dockerfile.",
+      "[2026-09-01T11:29:15.642Z] Executing 'docker build -t forgeops/try-sample:188e720 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-151034\"'...",
+      "[2026-09-01T11:29:16.137Z] BUILD_FAILED: Docker build failed for try-sample: Command failed: docker build -t forgeops/try-sample:188e720 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-151034\"\nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nError response from daemon: failed to parse Dockerfile: Syntax error - can't find = in \"values.concurrency\". Must be of the form: name=value\n",
+      "[2026-09-01T11:29:16.141Z] DEPLOYMENT FAILED: Docker build failed for try-sample: Command failed: docker build -t forgeops/try-sample:188e720 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-151034\"\nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nError response from daemon: failed to parse Dockerfile: Syntax error - can't find = in \"values.concurrency\". Must be of the form: name=value\n"
+    ],
+    "repositoryModel": {
+      "name": "try-sample",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "try-sample",
+          "type": "Node.js Application",
+          "framework": "Express",
+          "port": 9090,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        9090
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/try-sample:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [
+        "Prometheus"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# Golden Path: Background Worker Service\n\n> **Template:** `templates/worker-service/` · **Generated by:** ForgeOps IDP Golden Path Engine · **Backstage Role:** `service`\n\nThis Golden Path scaffolds a **production-ready asynchronous background worker microservice** designed for event-driven processing, queue consumption, and batch jobs — with dedicated Prometheus telemetry, non-root Docker builds, and Kubernetes manifests.\n\n---\n\n## What Gets Generated\n\n```\n{component_id}/\n├── src/\n│   └── worker.",
+        "detectedTechStack": [
+          "Express/Node.js",
+          "Redis",
+          "Kubernetes",
+          "Prometheus"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "containerPort": 9090,
+    "hostPort": 8039,
+    "envVars": {
+      "PORT": "9090",
+      "NODE_ENV": "production"
+    },
+    "error": "Docker build failed for try-sample: Command failed: docker build -t forgeops/try-sample:188e720 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-151034\"\nDEPRECATED: The legacy builder is deprecated and will be removed in a future release.\n            Install the buildx component to build images with BuildKit:\n            https://docs.docker.com/go/buildx/\n\nError response from daemon: failed to parse Dockerfile: Syntax error - can't find = in \"values.concurrency\". Must be of the form: name=value\n",
+    "duration": "5s"
+  },
+  {
+    "id": "dep-372015",
+    "serviceName": "service-payment",
+    "repoUrl": "https://github.com/rajpatel10124/cp-project-demo",
+    "environment": "development",
+    "target": "kubernetes-k8s",
+    "owner": "team-backend",
+    "namespace": "development",
+    "replicas": 2,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 8080,
+    "targetPort": 8080,
+    "healthEndpoint": "/healthz",
+    "status": "SUCCESS",
+    "createdAt": "2026-09-01T11:16:12.016Z",
+    "completedAt": "2026-09-01T11:16:12.016Z",
+    "duration": "14s",
+    "commitSha": "a1b2c3d",
+    "appType": "Background Worker Service",
+    "endpoint": "http://localhost:8080",
+    "logs": [
+      "[2026-09-01T11:16:12.016Z] Golden Path service creation initiated for 'service-payment'",
+      "[2026-09-01T11:16:12.016Z] OPA policy guardrails passed for owner 'team-backend' in environment 'development'",
+      "[2026-09-01T11:16:12.016Z] GitHub repository https://github.com/rajpatel10124/cp-project-demo created",
+      "[2026-09-01T11:16:12.016Z] Pushed 9 scaffold files from template 'worker-service' to repository",
+      "[2026-09-01T11:16:12.016Z] Configured GitHub Actions CI/CD workflow",
+      "[2026-09-01T11:16:12.016Z] Generated Kubernetes Deployment & Service manifests for namespace 'development'",
+      "[2026-09-01T11:16:12.016Z] Registered entity 'service-payment' in Software Catalog & Services/Workloads",
+      "[2026-09-01T11:16:12.016Z] Health probe passed for http://localhost:8080/healthz",
+      "[2026-09-01T11:16:12.016Z] Golden Path deployment completed successfully!"
+    ]
+  },
+  {
+    "id": "dep-5348",
+    "serviceName": "analysis-1788243043596",
+    "repoUrl": "https://github.com/rajpatel10124/supportivesailers",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "SUCCESS",
+    "createdAt": "2026-09-01T06:10:55.348Z",
+    "commitSha": "64ecd27",
+    "logs": [
+      "[2026-09-01T06:10:55.348Z] Deployment queued for analysis-1788243043596 on target local-docker",
+      "[2026-09-01T06:10:55.356Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-09-01T06:10:55.360Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-09-01T06:10:56.592Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-09-01T06:10:56.595Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/supportivesailers...",
+      "[2026-09-01T06:10:59.152Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-09-01T06:10:59.158Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-09-01T06:10:59.163Z] Canonical Container Port: 5000",
+      "[2026-09-01T06:10:59.168Z] Service Name: analysis-1788243043596",
+      "[2026-09-01T06:10:59.172Z] Step 4/8: Building application container image...",
+      "[2026-09-01T06:10:59.177Z] Initiating build process for analysis-1788243043596 (Generic Web Application)...",
+      "[2026-09-01T06:10:59.181Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-5348/Dockerfile.",
+      "[2026-09-01T06:10:59.185Z] Executing 'docker build -t forgeops/analysis-1788243043596:64ecd27 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-5348\"'...",
+      "[2026-09-01T06:11:01.162Z] Docker build complete for forgeops/analysis-1788243043596:64ecd27.",
+      "[2026-09-01T06:11:01.168Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-09-01T06:11:01.426Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-09-01T06:11:01.465Z] [LOCAL DOCKER] Starting container 'forgeops-analysis-1788243043596-dep-5348' (-p 8211:5000)...",
+      "[2026-09-01T06:11:03.561Z] Step 6/8: Verifying health probe on endpoint http://localhost:8211...",
+      "[2026-09-01T06:11:03.566Z] [LOCAL DOCKER] Probing endpoint http://localhost:8211/...",
+      "[2026-09-01T06:11:07.787Z] 🛠️ [SELF-HEALING] Nginx container detected listening on port 80 (was mapped to 5000). Re-binding port map to 80...",
+      "[2026-09-01T06:11:09.486Z] 🛠️ [SELF-HEALING] Container re-launched with port mapping -p 8211:80.",
+      "[2026-09-01T06:11:11.510Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-09-01T06:11:11.515Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-09-01T06:11:11.522Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:8211"
+    ],
+    "repositoryModel": {
+      "name": "dep-5348",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Generic Web Application",
+      "services": [
+        {
+          "name": "dep-5348",
+          "type": "Generic Web Application",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        80
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/dep-5348:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Docker",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# 🚀 SmartRoute – Optimized Path Finder (Supportive Sailers)\n\nSmartRoute is a smart route planning web application designed to help delivery services and logistics teams find **fastest, traffic-optimized routes** between two locations using interactive map technology.\n\n🔗 **Live Demo**: [Click to view](https://harshtrivedi456.github.io/SupportiveSailers/)\n\n---\n\n## 📌 Features\n\n- 🗺️ Interactive Map using Leaflet.js\n- 📍 Input source and destination coordinates\n- 🚦 Optimized path rendering for t",
+        "detectedTechStack": [
+          "Redis"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Generic Web Application",
+    "containerPort": 5000,
+    "hostPort": 8211,
+    "containerId": "forgeops-analysis-1788243043596-dep-5348",
+    "endpoint": "http://localhost:8211",
+    "duration": "16s",
+    "completedAt": "2026-09-01T06:11:11.522Z"
+  },
+  {
+    "id": "dep-7953",
+    "serviceName": "mern-ecommerce",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "MONGO_URI": "mongodb://forgeops-mongo-dev:27017/merndb",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "SUCCESS",
+    "createdAt": "2026-08-31T16:45:47.953Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-31T16:45:47.953Z] Redeployment triggered.",
+      "[2026-08-31T16:45:47.959Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-08-31T16:45:47.965Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-31T16:45:48.039Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-31T16:45:48.044Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-31T16:45:51.253Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-31T16:45:51.264Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-08-31T16:45:51.268Z] Canonical Container Port: 5000",
+      "[2026-08-31T16:45:51.271Z] Service Name: mern-ecommerce",
+      "[2026-08-31T16:45:51.275Z] Step 4/8: Building application container image...",
+      "[2026-08-31T16:45:51.280Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-31T16:45:51.283Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-7953/Dockerfile.",
+      "[2026-08-31T16:45:51.287Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-7953\"'...",
+      "[2026-08-31T16:45:51.647Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-31T16:45:51.661Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-08-31T16:45:51.771Z] [LOCAL DOCKER] Ensuring MongoDB container 'forgeops-mongo-dev' on forgeops-net...",
+      "[2026-08-31T16:45:51.825Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-08-31T16:45:51.861Z] [LOCAL DOCKER] Starting container 'forgeops-mern-ecommerce-dep-7953' (-p 8946:5000)...",
+      "[2026-08-31T16:45:52.663Z] Step 6/8: Verifying health probe on endpoint http://localhost:8946...",
+      "[2026-08-31T16:45:52.670Z] [LOCAL DOCKER] Probing endpoint http://localhost:8946/...",
+      "[2026-08-31T16:45:54.741Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-08-31T16:45:54.746Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-08-31T16:45:54.751Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:8946"
+    ],
+    "error": "Command failed: docker info\n",
+    "duration": "7s",
+    "repositoryModel": {
+      "name": "frontend",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "frontend",
+          "type": "Node.js Application",
+          "framework": "React",
+          "port": 5000,
+          "healthEndpoint": "/"
+        },
+        {
+          "name": "mern-ecommerce",
+          "type": "Full-Stack Node.js / React Application",
+          "framework": "MERN Stack",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        5000
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/frontend:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "Jenkins",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "NGINX Ingress",
+      "monitoring": [
+        "Prometheus",
+        "Grafana"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# MERN E-Commerce Platform - DevOps Deployment Project\n\n## Project Overview\n\nThis project demonstrates the deployment of a MERN-based E-Commerce application using a complete DevOps workflow on AWS.\n\nThe application is containerized using Docker, integrated with Jenkins CI/CD, deployed on a self-managed Kubernetes cluster, and monitored using Prometheus and Grafana.\n\nThe goal of this project was to simulate a production-style deployment environment while learning core DevOps tools and practices.\n",
+        "detectedTechStack": [
+          "MERN Stack",
+          "React",
+          "Express/Node.js",
+          "MongoDB",
+          "Redis",
+          "Jenkins CI/CD",
+          "Kubernetes",
+          "NGINX Ingress",
+          "Prometheus",
+          "Grafana"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Full-Stack Node.js / React Application",
+    "containerPort": 5000,
+    "hostPort": 8946,
+    "containerId": "forgeops-mern-ecommerce-dep-7953",
+    "endpoint": "http://localhost:8946",
+    "completedAt": "2026-08-31T16:45:54.751Z"
+  },
+  {
+    "id": "dep-8868",
+    "serviceName": "analysis-1788194110839",
+    "repoUrl": "https://github.com/rajpatel10124/supportivesailers",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "SUCCESS",
+    "createdAt": "2026-08-31T16:35:18.868Z",
+    "commitSha": "64ecd27",
+    "logs": [
+      "[2026-08-31T16:35:18.868Z] Deployment queued for analysis-1788194110839 on target local-docker",
+      "[2026-08-31T16:35:18.874Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-08-31T16:35:18.880Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-31T16:35:19.112Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-31T16:35:19.118Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/supportivesailers...",
+      "[2026-08-31T16:35:21.337Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-31T16:35:21.342Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-08-31T16:35:21.346Z] Canonical Container Port: 5000",
+      "[2026-08-31T16:35:21.350Z] Service Name: analysis-1788194110839",
+      "[2026-08-31T16:35:21.353Z] Step 4/8: Building application container image...",
+      "[2026-08-31T16:35:21.357Z] Initiating build process for analysis-1788194110839 (Generic Web Application)...",
+      "[2026-08-31T16:35:21.361Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-8868/Dockerfile.",
+      "[2026-08-31T16:35:21.364Z] Executing 'docker build -t forgeops/analysis-1788194110839:64ecd27 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-8868\"'...",
+      "[2026-08-31T16:35:23.463Z] Docker build complete for forgeops/analysis-1788194110839:64ecd27.",
+      "[2026-08-31T16:35:23.466Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-08-31T16:35:23.632Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-08-31T16:35:23.686Z] [LOCAL DOCKER] Starting container 'forgeops-analysis-1788194110839-dep-8868' (-p 8130:5000)...",
+      "[2026-08-31T16:35:25.773Z] Step 6/8: Verifying health probe on endpoint http://localhost:8130...",
+      "[2026-08-31T16:35:25.777Z] [LOCAL DOCKER] Probing endpoint http://localhost:8130/...",
+      "[2026-08-31T16:35:30.029Z] 🛠️ [SELF-HEALING] Nginx container detected listening on port 80 (was mapped to 5000). Re-binding port map to 80...",
+      "[2026-08-31T16:35:31.330Z] 🛠️ [SELF-HEALING] Container re-launched with port mapping -p 8130:80.",
+      "[2026-08-31T16:35:33.356Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-08-31T16:35:33.360Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-08-31T16:35:33.366Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:8130"
+    ],
+    "repositoryModel": {
+      "name": "dep-8868",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Generic Web Application",
+      "services": [
+        {
+          "name": "dep-8868",
+          "type": "Generic Web Application",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        80
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/dep-8868:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Docker",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# 🚀 SmartRoute – Optimized Path Finder (Supportive Sailers)\n\nSmartRoute is a smart route planning web application designed to help delivery services and logistics teams find **fastest, traffic-optimized routes** between two locations using interactive map technology.\n\n🔗 **Live Demo**: [Click to view](https://harshtrivedi456.github.io/SupportiveSailers/)\n\n---\n\n## 📌 Features\n\n- 🗺️ Interactive Map using Leaflet.js\n- 📍 Input source and destination coordinates\n- 🚦 Optimized path rendering for t",
+        "detectedTechStack": [
+          "Redis"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Generic Web Application",
+    "containerPort": 5000,
+    "hostPort": 8130,
+    "containerId": "forgeops-analysis-1788194110839-dep-8868",
+    "endpoint": "http://localhost:8130",
+    "duration": "14s",
+    "completedAt": "2026-08-31T16:35:33.366Z"
+  },
+  {
+    "id": "dep-7352",
+    "serviceName": "mern-ecommerce",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "MONGO_URI": "mongodb://forgeops-mongo-dev:27017/merndb",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "SUCCESS",
+    "createdAt": "2026-08-31T16:13:17.352Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-31T16:13:17.352Z] Redeployment triggered.",
+      "[2026-08-31T16:13:17.357Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-08-31T16:13:17.362Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-31T16:13:17.655Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-31T16:13:17.658Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-31T16:13:20.526Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-31T16:13:20.536Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-08-31T16:13:20.540Z] Canonical Container Port: 5000",
+      "[2026-08-31T16:13:20.543Z] Service Name: mern-ecommerce",
+      "[2026-08-31T16:13:20.547Z] Step 4/8: Building application container image...",
+      "[2026-08-31T16:13:20.551Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-31T16:13:20.553Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-7352/Dockerfile.",
+      "[2026-08-31T16:13:20.557Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-7352\"'...",
+      "[2026-08-31T16:13:20.987Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-31T16:13:20.991Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-08-31T16:13:21.047Z] [LOCAL DOCKER] Ensuring MongoDB container 'forgeops-mongo-dev' on forgeops-net...",
+      "[2026-08-31T16:13:21.121Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-08-31T16:13:21.154Z] [LOCAL DOCKER] Starting container 'forgeops-mern-ecommerce-dep-7352' (-p 8946:5000)...",
+      "[2026-08-31T16:13:23.355Z] Step 6/8: Verifying health probe on endpoint http://localhost:8946...",
+      "[2026-08-31T16:13:23.358Z] [LOCAL DOCKER] Probing endpoint http://localhost:8946/...",
+      "[2026-08-31T16:13:25.457Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-08-31T16:13:25.460Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-08-31T16:13:25.466Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:8946"
+    ],
+    "error": "Command failed: docker info\n",
+    "duration": "8s",
+    "repositoryModel": {
+      "name": "frontend",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "frontend",
+          "type": "Node.js Application",
+          "framework": "React",
+          "port": 5000,
+          "healthEndpoint": "/"
+        },
+        {
+          "name": "mern-ecommerce",
+          "type": "Full-Stack Node.js / React Application",
+          "framework": "MERN Stack",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        5000
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/frontend:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "Jenkins",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "NGINX Ingress",
+      "monitoring": [
+        "Prometheus",
+        "Grafana"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# MERN E-Commerce Platform - DevOps Deployment Project\n\n## Project Overview\n\nThis project demonstrates the deployment of a MERN-based E-Commerce application using a complete DevOps workflow on AWS.\n\nThe application is containerized using Docker, integrated with Jenkins CI/CD, deployed on a self-managed Kubernetes cluster, and monitored using Prometheus and Grafana.\n\nThe goal of this project was to simulate a production-style deployment environment while learning core DevOps tools and practices.\n",
+        "detectedTechStack": [
+          "MERN Stack",
+          "React",
+          "Express/Node.js",
+          "MongoDB",
+          "Redis",
+          "Jenkins CI/CD",
+          "Kubernetes",
+          "NGINX Ingress",
+          "Prometheus",
+          "Grafana"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Full-Stack Node.js / React Application",
+    "containerPort": 5000,
+    "hostPort": 8946,
+    "containerId": "forgeops-mern-ecommerce-dep-7352",
+    "endpoint": "http://localhost:8946",
+    "completedAt": "2026-08-31T16:13:25.466Z"
+  },
+  {
+    "id": "dep-4401",
+    "serviceName": "mern-ecommerce",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "MONGO_URI": "mongodb://forgeops-mongo-dev:27017/merndb",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "SUCCESS",
+    "createdAt": "2026-08-31T16:02:04.401Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-31T16:02:04.401Z] Redeployment triggered.",
+      "[2026-08-31T16:02:04.406Z] Step 1/8: Pre-flight validation via Target Adapter 'MINIKUBE KUBERNETES'...",
+      "[2026-08-31T16:02:04.411Z] Target Adapter [MINIKUBE]: Validating local Kubernetes environment...",
+      "[2026-08-31T16:02:05.031Z] 🛠️ [SELF-HEALING] Minikube cluster is stopped/unreachable. Attempting automatic start ('minikube start --driver=docker')...",
+      "[2026-08-31T16:02:20.044Z] ⚠️ Minikube auto-start notice: Command failed: minikube start --driver=docker\n",
+      "[2026-08-31T16:02:20.047Z] 🛠️ [SELF-HEALING] Attempting automatic creation of Kind cluster ('kind create cluster --name forgeops')...",
+      "[2026-08-31T16:02:20.060Z] ⚠️ Kind auto-creation notice: Command failed: kind create cluster --name forgeops\n/bin/sh: 1: kind: not found\n",
+      "[2026-08-31T16:02:20.064Z] 🛠️ [SELF-HEALING FALLBACK] Local Kubernetes cluster (Minikube/Kind) is unavailable on host machine. Automatically failing over deployment target to LOCAL DOCKER container engine...",
+      "[2026-08-31T16:02:20.068Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-31T16:02:20.116Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-31T16:02:20.120Z] ✓ Target successfully failover-routed to Local Docker engine.",
+      "[2026-08-31T16:02:20.123Z] Target Adapter failover active: Switched runtime target to 'LOCAL DOCKER'",
+      "[2026-08-31T16:02:20.127Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-31T16:02:23.483Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-31T16:02:23.493Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-08-31T16:02:23.496Z] Canonical Container Port: 5000",
+      "[2026-08-31T16:02:23.498Z] Service Name: mern-ecommerce",
+      "[2026-08-31T16:02:23.502Z] Step 4/8: Building application container image...",
+      "[2026-08-31T16:02:23.507Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-31T16:02:23.510Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-4401/Dockerfile.",
+      "[2026-08-31T16:02:23.513Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-4401\"'...",
+      "[2026-08-31T16:02:24.003Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-31T16:02:24.006Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-08-31T16:02:24.056Z] [LOCAL DOCKER] Ensuring MongoDB container 'forgeops-mongo-dev' on forgeops-net...",
+      "[2026-08-31T16:02:24.141Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-08-31T16:02:24.172Z] [LOCAL DOCKER] Starting container 'forgeops-mern-ecommerce-dep-4401' (-p 8946:5000)...",
+      "[2026-08-31T16:02:28.154Z] Step 6/8: Verifying health probe on endpoint http://localhost:8946...",
+      "[2026-08-31T16:02:28.157Z] [LOCAL DOCKER] Probing endpoint http://localhost:8946/...",
+      "[2026-08-31T16:02:30.233Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-08-31T16:02:30.236Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-08-31T16:02:30.242Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:8946"
+    ],
+    "error": "Command failed: docker info\n",
+    "duration": "26s",
+    "repositoryModel": {
+      "name": "frontend",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "frontend",
+          "type": "Node.js Application",
+          "framework": "React",
+          "port": 5000,
+          "healthEndpoint": "/"
+        },
+        {
+          "name": "mern-ecommerce",
+          "type": "Full-Stack Node.js / React Application",
+          "framework": "MERN Stack",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        5000
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/frontend:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "Jenkins",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "NGINX Ingress",
+      "monitoring": [
+        "Prometheus",
+        "Grafana"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# MERN E-Commerce Platform - DevOps Deployment Project\n\n## Project Overview\n\nThis project demonstrates the deployment of a MERN-based E-Commerce application using a complete DevOps workflow on AWS.\n\nThe application is containerized using Docker, integrated with Jenkins CI/CD, deployed on a self-managed Kubernetes cluster, and monitored using Prometheus and Grafana.\n\nThe goal of this project was to simulate a production-style deployment environment while learning core DevOps tools and practices.\n",
+        "detectedTechStack": [
+          "MERN Stack",
+          "React",
+          "Express/Node.js",
+          "MongoDB",
+          "Redis",
+          "Jenkins CI/CD",
+          "Kubernetes",
+          "NGINX Ingress",
+          "Prometheus",
+          "Grafana"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Full-Stack Node.js / React Application",
+    "containerPort": 5000,
+    "hostPort": 8946,
+    "containerId": "forgeops-mern-ecommerce-dep-4401",
+    "endpoint": "http://localhost:8946",
+    "completedAt": "2026-08-31T16:02:30.242Z"
+  },
+  {
+    "id": "dep-1466",
+    "serviceName": "frontend",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-k8s",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "8080"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-31T15:58:31.466Z",
+    "commitSha": "fetching...",
+    "logs": [
+      "[2026-08-31T15:58:31.466Z] Deployment queued for frontend on target local-k8s",
+      "[2026-08-31T15:58:31.475Z] Step 1/8: Pre-flight validation via Target Adapter 'MINIKUBE KUBERNETES'...",
+      "[2026-08-31T15:58:31.480Z] Target Adapter [MINIKUBE]: Validating local Kubernetes environment...",
+      "[2026-08-31T15:58:36.055Z] 🛠️ [SELF-HEALING] Minikube cluster is stopped/unreachable. Attempting automatic start ('minikube start --driver=docker')...",
+      "[2026-08-31T15:58:51.067Z] ⚠️ Minikube auto-start notice: Command failed: minikube start --driver=docker\n",
+      "[2026-08-31T15:58:51.076Z] 🛠️ [SELF-HEALING] Attempting automatic creation of Kind cluster ('kind create cluster --name forgeops')...",
+      "[2026-08-31T15:58:51.092Z] ⚠️ Kind auto-creation notice: Command failed: kind create cluster --name forgeops\n/bin/sh: 1: kind: not found\n",
+      "[2026-08-31T15:58:51.097Z] 🛠️ [SELF-HEALING FALLBACK] Local Kubernetes cluster (Minikube/Kind) is unavailable on host machine. Automatically failing over deployment target to LOCAL DOCKER container engine...",
+      "[2026-08-31T15:58:51.100Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-31T15:58:56.112Z] DEPLOYMENT FAILED AT PRE-FLIGHT: Command failed: docker info\n",
+      "[2026-08-31T15:58:56.116Z] DEPLOYMENT FAILED: Command failed: docker info\n"
+    ],
+    "error": "Command failed: docker info\n",
+    "duration": "25s"
+  },
+  {
+    "id": "dep-2998",
+    "serviceName": "mern-ecommerce",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "MONGO_URI": "mongodb://forgeops-mongo-dev:27017/merndb",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "DELETED",
+    "createdAt": "2026-08-30T13:24:52.998Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-30T13:24:52.998Z] Deployment queued for frontend on target local-k8s",
+      "[2026-08-30T13:24:53.003Z] Step 1/8: Pre-flight validation via Target Adapter 'MINIKUBE KUBERNETES'...",
+      "[2026-08-30T13:24:53.008Z] Target Adapter [MINIKUBE]: Validating local Kubernetes environment...",
+      "[2026-08-30T13:24:56.459Z] 🛠️ [SELF-HEALING] Minikube cluster is stopped/unreachable. Attempting automatic start ('minikube start --driver=docker')...",
+      "[2026-08-30T13:25:11.470Z] ⚠️ Minikube auto-start notice: Command failed: minikube start --driver=docker\n",
+      "[2026-08-30T13:25:11.473Z] 🛠️ [SELF-HEALING] Attempting automatic creation of Kind cluster ('kind create cluster --name forgeops')...",
+      "[2026-08-30T13:25:11.491Z] ⚠️ Kind auto-creation notice: Command failed: kind create cluster --name forgeops\n/bin/sh: 1: kind: not found\n",
+      "[2026-08-30T13:25:11.494Z] 🛠️ [SELF-HEALING FALLBACK] Local Kubernetes cluster (Minikube/Kind) is unavailable on host machine. Automatically failing over deployment target to LOCAL DOCKER container engine...",
+      "[2026-08-30T13:25:11.497Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-30T13:25:11.563Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-30T13:25:11.566Z] ✓ Target successfully failover-routed to Local Docker engine.",
+      "[2026-08-30T13:25:11.569Z] Target Adapter failover active: Switched runtime target to 'LOCAL DOCKER'",
+      "[2026-08-30T13:25:11.571Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T13:25:15.622Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-30T13:25:15.628Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-08-30T13:25:15.631Z] Canonical Container Port: 5000",
+      "[2026-08-30T13:25:15.634Z] Service Name: mern-ecommerce",
+      "[2026-08-30T13:25:15.636Z] Step 4/8: Building application container image...",
+      "[2026-08-30T13:25:15.640Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-30T13:25:15.643Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-2998/Dockerfile.",
+      "[2026-08-30T13:25:15.647Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-2998\"'...",
+      "[2026-08-30T13:25:16.133Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-30T13:25:16.137Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-08-30T13:25:16.207Z] [LOCAL DOCKER] Ensuring MongoDB container 'forgeops-mongo-dev' on forgeops-net...",
+      "[2026-08-30T13:25:16.393Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-08-30T13:25:16.423Z] [LOCAL DOCKER] Starting container 'forgeops-mern-ecommerce-dep-2998' (-p 9329:5000)...",
+      "[2026-08-30T13:25:20.941Z] Step 6/8: Verifying health probe on endpoint http://localhost:9329...",
+      "[2026-08-30T13:25:20.944Z] [LOCAL DOCKER] Probing endpoint http://localhost:9329/...",
+      "[2026-08-30T13:25:23.042Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-08-30T13:25:23.045Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-08-30T13:25:23.051Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:9329",
+      "[2026-08-30T13:30:14.203Z] Deployment resources cleaned up via LOCAL DOCKER. Status set to DELETED."
+    ],
+    "repositoryModel": {
+      "name": "frontend",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "frontend",
+          "type": "Node.js Application",
+          "framework": "React",
+          "port": 5000,
+          "healthEndpoint": "/"
+        },
+        {
+          "name": "mern-ecommerce",
+          "type": "Full-Stack Node.js / React Application",
+          "framework": "MERN Stack",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        5000
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/frontend:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "Jenkins",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "NGINX Ingress",
+      "monitoring": [
+        "Prometheus",
+        "Grafana"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# MERN E-Commerce Platform - DevOps Deployment Project\n\n## Project Overview\n\nThis project demonstrates the deployment of a MERN-based E-Commerce application using a complete DevOps workflow on AWS.\n\nThe application is containerized using Docker, integrated with Jenkins CI/CD, deployed on a self-managed Kubernetes cluster, and monitored using Prometheus and Grafana.\n\nThe goal of this project was to simulate a production-style deployment environment while learning core DevOps tools and practices.\n",
+        "detectedTechStack": [
+          "MERN Stack",
+          "React",
+          "Express/Node.js",
+          "MongoDB",
+          "Redis",
+          "Jenkins CI/CD",
+          "Kubernetes",
+          "NGINX Ingress",
+          "Prometheus",
+          "Grafana"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Full-Stack Node.js / React Application",
+    "containerPort": 5000,
+    "hostPort": 9329,
+    "containerId": "forgeops-mern-ecommerce-dep-2998",
+    "endpoint": "http://localhost:9329",
+    "duration": "30s",
+    "completedAt": "2026-08-30T13:30:14.203Z"
+  },
+  {
+    "id": "dep-5738",
+    "serviceName": "frontend",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-k8s",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "8080"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-30T13:20:55.739Z",
+    "commitSha": "fetching...",
+    "logs": [
+      "[2026-08-30T13:20:55.739Z] Deployment queued for frontend on target local-k8s",
+      "[2026-08-30T13:20:55.743Z] Step 1/8: Pre-flight validation via Target Adapter 'MINIKUBE KUBERNETES'...",
+      "[2026-08-30T13:20:55.747Z] Target Adapter [MINIKUBE]: Validating local Kubernetes environment...",
+      "[2026-08-30T13:20:56.272Z] 🛠️ [SELF-HEALING] Minikube cluster is stopped/unreachable. Attempting automatic start ('minikube start --driver=docker')...",
+      "[2026-08-30T13:21:11.287Z] ⚠️ Minikube auto-start notice: Command failed: minikube start --driver=docker\n",
+      "[2026-08-30T13:21:11.292Z] 🛠️ [SELF-HEALING] Attempting automatic creation of Kind cluster ('kind create cluster --name forgeops')...",
+      "[2026-08-30T13:21:11.364Z] ⚠️ Kind auto-creation notice: Command failed: kind create cluster --name forgeops\n/bin/sh: 1: kind: not found\n",
+      "[2026-08-30T13:21:11.389Z] 🛠️ [SELF-HEALING FALLBACK] Local Kubernetes cluster (Minikube/Kind) is unavailable on host machine. Automatically failing over deployment target to LOCAL DOCKER container engine...",
+      "[2026-08-30T13:21:11.413Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-30T13:21:11.477Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-30T13:21:11.481Z] ✓ Target successfully failover-routed to Local Docker engine.",
+      "[2026-08-30T13:21:11.484Z] DEPLOYMENT FAILED AT PRE-FLIGHT: Assignment to constant variable.",
+      "[2026-08-30T13:21:11.500Z] DEPLOYMENT FAILED: Assignment to constant variable."
+    ],
+    "error": "Assignment to constant variable.",
+    "duration": "16s"
+  },
+  {
+    "id": "dep-4710",
+    "serviceName": "mern-ecommerce",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-k8s",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-30T13:15:44.710Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-30T13:15:44.710Z] Deployment queued for frontend on target local-k8s",
+      "[2026-08-30T13:15:44.715Z] Step 1/8: Pre-flight validation via Target Adapter 'MINIKUBE KUBERNETES'...",
+      "[2026-08-30T13:15:44.720Z] Target Adapter [MINIKUBE]: Validating local Kubernetes environment...",
+      "[2026-08-30T13:15:46.442Z] 🛠️ [SELF-HEALING] Minikube cluster is stopped/unreachable. Attempting automatic start ('minikube start --driver=docker')...",
+      "[2026-08-30T13:16:01.454Z] ⚠️ Minikube auto-start notice: Command failed: minikube start --driver=docker\n",
+      "[2026-08-30T13:16:01.462Z] 🛠️ [SELF-HEALING] Attempting automatic creation of Kind cluster ('kind create cluster --name forgeops')...",
+      "[2026-08-30T13:16:01.476Z] ⚠️ Kind auto-creation notice: Command failed: kind create cluster --name forgeops\n/bin/sh: 1: kind: not found\n",
+      "[2026-08-30T13:16:01.480Z] 🛠️ [SELF-HEALING FALLBACK] Local Kubernetes cluster (Minikube/Kind) is unavailable on host machine. Automatically failing over deployment target to LOCAL DOCKER container engine...",
+      "[2026-08-30T13:16:01.483Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-30T13:16:01.621Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-30T13:16:01.625Z] ✓ Target successfully failover-routed to Local Docker engine.",
+      "[2026-08-30T13:16:01.629Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T13:16:03.847Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-30T13:16:03.852Z] Target Adapter Selected: MINIKUBE KUBERNETES",
+      "[2026-08-30T13:16:03.855Z] Canonical Container Port: 5000",
+      "[2026-08-30T13:16:03.858Z] Service Name: mern-ecommerce",
+      "[2026-08-30T13:16:03.860Z] Step 4/8: Building application container image...",
+      "[2026-08-30T13:16:03.864Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-30T13:16:03.867Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-4710/Dockerfile.",
+      "[2026-08-30T13:16:03.870Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-4710\"'...",
+      "[2026-08-30T13:16:04.459Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-30T13:16:04.463Z] Step 5/8: Executing workload deployment via 'MINIKUBE KUBERNETES'...",
+      "[2026-08-30T13:16:04.465Z] [MINIKUBE] Loading image 'forgeops/mern-ecommerce:abac06b' into Minikube image cache...",
+      "[2026-08-30T13:16:55.449Z] [MINIKUBE] Applying Kubernetes manifests for service 'mern-ecommerce'...",
+      "[2026-08-30T13:17:00.736Z] DEPLOYMENT FAILED: Deployment failed under MINIKUBE KUBERNETES"
+    ],
+    "repositoryModel": {
+      "name": "frontend",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "frontend",
+          "type": "Node.js Application",
+          "framework": "React",
+          "port": 5000,
+          "healthEndpoint": "/"
+        },
+        {
+          "name": "mern-ecommerce",
+          "type": "Full-Stack Node.js / React Application",
+          "framework": "MERN Stack",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        5000
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/frontend:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "Jenkins",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "NGINX Ingress",
+      "monitoring": [
+        "Prometheus",
+        "Grafana"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# MERN E-Commerce Platform - DevOps Deployment Project\n\n## Project Overview\n\nThis project demonstrates the deployment of a MERN-based E-Commerce application using a complete DevOps workflow on AWS.\n\nThe application is containerized using Docker, integrated with Jenkins CI/CD, deployed on a self-managed Kubernetes cluster, and monitored using Prometheus and Grafana.\n\nThe goal of this project was to simulate a production-style deployment environment while learning core DevOps tools and practices.\n",
+        "detectedTechStack": [
+          "MERN Stack",
+          "React",
+          "Express/Node.js",
+          "MongoDB",
+          "Redis",
+          "Jenkins CI/CD",
+          "Kubernetes",
+          "NGINX Ingress",
+          "Prometheus",
+          "Grafana"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Full-Stack Node.js / React Application",
+    "containerPort": 5000,
+    "hostPort": 8898,
+    "error": "Deployment failed under MINIKUBE KUBERNETES",
+    "duration": "76s"
+  },
+  {
+    "id": "dep-1764",
+    "serviceName": "frontend",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-k8s",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "8080"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-30T13:12:01.764Z",
+    "commitSha": "fetching...",
+    "logs": [
+      "[2026-08-30T13:12:01.764Z] Deployment queued for frontend on target local-k8s",
+      "[2026-08-30T13:12:01.768Z] Step 1/8: Pre-flight validation via Target Adapter 'MINIKUBE KUBERNETES'...",
+      "[2026-08-30T13:12:01.774Z] Target Adapter [MINIKUBE]: Validating local Kubernetes environment...",
+      "[2026-08-30T13:12:05.930Z] 🛠️ [SELF-HEALING] Minikube cluster is stopped/unreachable. Attempting automatic start ('minikube start --driver=docker')...",
+      "[2026-08-30T13:12:50.944Z] ⚠️ Minikube auto-start notice: Command failed: minikube start --driver=docker\n",
+      "[2026-08-30T13:12:50.957Z] 🛠️ [SELF-HEALING] Attempting automatic creation of Kind cluster ('kind create cluster --name forgeops')...",
+      "[2026-08-30T13:12:50.990Z] ⚠️ Kind auto-creation notice: Command failed: kind create cluster --name forgeops\n/bin/sh: 1: kind: not found\n",
+      "[2026-08-30T13:12:51.038Z] DEPLOYMENT FAILED AT PRE-FLIGHT: KUBERNETES_UNAVAILABLE: Local Kubernetes API unreachable (minikube/kind). Please start your cluster using 'minikube start' or 'kind create cluster' in terminal.",
+      "[2026-08-30T13:12:51.048Z] DEPLOYMENT FAILED: KUBERNETES_UNAVAILABLE: Local Kubernetes API unreachable (minikube/kind). Please start your cluster using 'minikube start' or 'kind create cluster' in terminal."
+    ],
+    "error": "KUBERNETES_UNAVAILABLE: Local Kubernetes API unreachable (minikube/kind). Please start your cluster using 'minikube start' or 'kind create cluster' in terminal.",
+    "duration": "49s"
+  },
+  {
+    "id": "dep-6609",
+    "serviceName": "frontend",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-k8s",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "8080"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-30T13:10:26.609Z",
+    "commitSha": "fetching...",
+    "logs": [
+      "[2026-08-30T13:10:26.609Z] Deployment queued for frontend on target local-k8s",
+      "[2026-08-30T13:10:26.612Z] Step 1/8: Pre-flight validation via Target Adapter 'MINIKUBE KUBERNETES'...",
+      "[2026-08-30T13:10:26.616Z] Target Adapter [MINIKUBE]: Checking Minikube status & kubectl...",
+      "[2026-08-30T13:10:31.951Z] DEPLOYMENT FAILED AT PRE-FLIGHT: MINIKUBE_UNAVAILABLE: Minikube / local Kubernetes API unreachable. Ensure minikube is running ('minikube start'). Details: Command failed: kubectl cluster-info\nE0830 18:40:30.267250   35089 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://192.168.58.2:8443/api?timeout=32s\\\": dial tcp 192.168.58.2:8443: connect: no route to host\"\n",
+      "[2026-08-30T13:10:31.954Z] DEPLOYMENT FAILED: MINIKUBE_UNAVAILABLE: Minikube / local Kubernetes API unreachable. Ensure minikube is running ('minikube start'). Details: Command failed: kubectl cluster-info\nE0830 18:40:30.267250   35089 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://192.168.58.2:8443/api?timeout=32s\\\": dial tcp 192.168.58.2:8443: connect: no route to host\"\n"
+    ],
+    "error": "MINIKUBE_UNAVAILABLE: Minikube / local Kubernetes API unreachable. Ensure minikube is running ('minikube start'). Details: Command failed: kubectl cluster-info\nE0830 18:40:30.267250   35089 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://192.168.58.2:8443/api?timeout=32s\\\": dial tcp 192.168.58.2:8443: connect: no route to host\"\n",
+    "duration": "5s"
+  },
+  {
+    "id": "dep-4442",
+    "serviceName": "mern-ecommerce",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "MONGO_URI": "mongodb://forgeops-mongo-dev:27017/merndb",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "DELETED",
+    "createdAt": "2026-08-30T13:09:44.442Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-30T13:09:44.442Z] Deployment queued for frontend on target local-docker",
+      "[2026-08-30T13:09:44.445Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-08-30T13:09:44.451Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-30T13:09:44.541Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-30T13:09:44.546Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T13:09:48.209Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-30T13:09:48.215Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-08-30T13:09:48.217Z] Canonical Container Port: 5000",
+      "[2026-08-30T13:09:48.221Z] Service Name: mern-ecommerce",
+      "[2026-08-30T13:09:48.223Z] Step 4/8: Building application container image...",
+      "[2026-08-30T13:09:48.225Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-30T13:09:48.228Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-4442/Dockerfile.",
+      "[2026-08-30T13:09:48.230Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-4442\"'...",
+      "[2026-08-30T13:09:48.338Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-30T13:09:48.341Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-08-30T13:09:48.382Z] [LOCAL DOCKER] Ensuring MongoDB container 'forgeops-mongo-dev' on forgeops-net...",
+      "[2026-08-30T13:09:48.424Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-08-30T13:09:48.475Z] [LOCAL DOCKER] Starting container 'forgeops-mern-ecommerce-dep-4442' (-p 8525:5000)...",
+      "[2026-08-30T13:09:49.213Z] Step 6/8: Verifying health probe on endpoint http://localhost:8525...",
+      "[2026-08-30T13:09:49.216Z] [LOCAL DOCKER] Probing endpoint http://localhost:8525/...",
+      "[2026-08-30T13:09:51.285Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-08-30T13:09:51.288Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-08-30T13:09:51.291Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:8525",
+      "[2026-08-30T13:10:15.333Z] Deployment resources cleaned up via LOCAL DOCKER. Status set to DELETED."
+    ],
+    "repositoryModel": {
+      "name": "frontend",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "frontend",
+          "type": "Node.js Application",
+          "framework": "React",
+          "port": 5000,
+          "healthEndpoint": "/"
+        },
+        {
+          "name": "mern-ecommerce",
+          "type": "Full-Stack Node.js / React Application",
+          "framework": "MERN Stack",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        5000
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/frontend:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "Jenkins",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "NGINX Ingress",
+      "monitoring": [
+        "Prometheus",
+        "Grafana"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# MERN E-Commerce Platform - DevOps Deployment Project\n\n## Project Overview\n\nThis project demonstrates the deployment of a MERN-based E-Commerce application using a complete DevOps workflow on AWS.\n\nThe application is containerized using Docker, integrated with Jenkins CI/CD, deployed on a self-managed Kubernetes cluster, and monitored using Prometheus and Grafana.\n\nThe goal of this project was to simulate a production-style deployment environment while learning core DevOps tools and practices.\n",
+        "detectedTechStack": [
+          "MERN Stack",
+          "React",
+          "Express/Node.js",
+          "MongoDB",
+          "Redis",
+          "Jenkins CI/CD",
+          "Kubernetes",
+          "NGINX Ingress",
+          "Prometheus",
+          "Grafana"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Full-Stack Node.js / React Application",
+    "containerPort": 5000,
+    "hostPort": 8525,
+    "containerId": "forgeops-mern-ecommerce-dep-4442",
+    "endpoint": "http://localhost:8525",
+    "duration": "7s",
+    "completedAt": "2026-08-30T13:10:15.333Z"
+  },
+  {
+    "id": "dep-1908",
+    "serviceName": "analysis-1788095324556",
+    "repoUrl": "https://github.com/rajpatel10124/SupportiveSailers",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "DELETED",
+    "createdAt": "2026-08-30T13:08:51.908Z",
+    "commitSha": "64ecd27",
+    "logs": [
+      "[2026-08-30T13:08:51.908Z] Deployment queued for analysis-1788095324556 on target local-docker",
+      "[2026-08-30T13:08:51.918Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-08-30T13:08:51.920Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-30T13:08:55.998Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-30T13:08:55.999Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/SupportiveSailers...",
+      "[2026-08-30T13:08:57.993Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-30T13:08:57.999Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-08-30T13:08:58.002Z] Canonical Container Port: 5000",
+      "[2026-08-30T13:08:58.004Z] Service Name: analysis-1788095324556",
+      "[2026-08-30T13:08:58.007Z] Step 4/8: Building application container image...",
+      "[2026-08-30T13:08:58.010Z] Initiating build process for analysis-1788095324556 (Generic Web Application)...",
+      "[2026-08-30T13:08:58.012Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-1908/Dockerfile.",
+      "[2026-08-30T13:08:58.014Z] Executing 'docker build -t forgeops/analysis-1788095324556:64ecd27 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-1908\"'...",
+      "[2026-08-30T13:08:59.015Z] Docker build complete for forgeops/analysis-1788095324556:64ecd27.",
+      "[2026-08-30T13:08:59.019Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-08-30T13:08:59.070Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-08-30T13:08:59.111Z] [LOCAL DOCKER] Starting container 'forgeops-analysis-1788095324556-dep-1908' (-p 8392:5000)...",
+      "[2026-08-30T13:09:01.156Z] Step 6/8: Verifying health probe on endpoint http://localhost:8392...",
+      "[2026-08-30T13:09:01.160Z] [LOCAL DOCKER] Probing endpoint http://localhost:8392/...",
+      "[2026-08-30T13:09:05.317Z] 🛠️ [SELF-HEALING] Nginx container detected listening on port 80 (was mapped to 5000). Re-binding port map to 80...",
+      "[2026-08-30T13:09:06.978Z] 🛠️ [SELF-HEALING] Container re-launched with port mapping -p 8392:80.",
+      "[2026-08-30T13:09:09.004Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-08-30T13:09:09.006Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-08-30T13:09:09.010Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:8392",
+      "[2026-08-30T13:09:48.857Z] Deployment resources cleaned up via LOCAL DOCKER. Status set to DELETED."
+    ],
+    "repositoryModel": {
+      "name": "dep-1908",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Generic Web Application",
+      "services": [
+        {
+          "name": "dep-1908",
+          "type": "Generic Web Application",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        80
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/dep-1908:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Docker",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# 🚀 SmartRoute – Optimized Path Finder (Supportive Sailers)\n\nSmartRoute is a smart route planning web application designed to help delivery services and logistics teams find **fastest, traffic-optimized routes** between two locations using interactive map technology.\n\n🔗 **Live Demo**: [Click to view](https://harshtrivedi456.github.io/SupportiveSailers/)\n\n---\n\n## 📌 Features\n\n- 🗺️ Interactive Map using Leaflet.js\n- 📍 Input source and destination coordinates\n- 🚦 Optimized path rendering for t",
+        "detectedTechStack": [
+          "Redis"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Generic Web Application",
+    "containerPort": 5000,
+    "hostPort": 8392,
+    "containerId": "forgeops-analysis-1788095324556-dep-1908",
+    "endpoint": "http://localhost:8392",
+    "duration": "17s",
+    "completedAt": "2026-08-30T13:09:48.857Z"
+  },
+  {
+    "id": "dep-5583",
+    "serviceName": "analysis-1788095187267",
+    "repoUrl": "https://github.com/rajpatel10124/SupportiveSailers",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "DELETED",
+    "createdAt": "2026-08-30T13:06:35.583Z",
+    "commitSha": "64ecd27",
+    "logs": [
+      "[2026-08-30T13:06:35.583Z] Deployment queued for analysis-1788095187267 on target local-docker",
+      "[2026-08-30T13:06:35.589Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-08-30T13:06:35.593Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-30T13:06:37.809Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-30T13:06:37.811Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/SupportiveSailers...",
+      "[2026-08-30T13:06:40.387Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-30T13:06:40.391Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-08-30T13:06:40.393Z] Canonical Container Port: 5000",
+      "[2026-08-30T13:06:40.397Z] Service Name: analysis-1788095187267",
+      "[2026-08-30T13:06:40.399Z] Step 4/8: Building application container image...",
+      "[2026-08-30T13:06:40.401Z] Initiating build process for analysis-1788095187267 (Generic Web Application)...",
+      "[2026-08-30T13:06:40.404Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-5583/Dockerfile.",
+      "[2026-08-30T13:06:40.406Z] Executing 'docker build -t forgeops/analysis-1788095187267:64ecd27 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-5583\"'...",
+      "[2026-08-30T13:06:40.917Z] Docker build complete for forgeops/analysis-1788095187267:64ecd27.",
+      "[2026-08-30T13:06:40.921Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-08-30T13:06:40.966Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-08-30T13:06:41.005Z] [LOCAL DOCKER] Starting container 'forgeops-analysis-1788095187267-dep-5583' (-p 8622:5000)...",
+      "[2026-08-30T13:06:43.607Z] Step 6/8: Verifying health probe on endpoint http://localhost:8622...",
+      "[2026-08-30T13:06:43.610Z] [LOCAL DOCKER] Probing endpoint http://localhost:8622/...",
+      "\n======================================================\nLOCAL DOCKER DIAGNOSTICS FOR forgeops-analysis-1788095187267-dep-5583\n======================================================\n[Inspect]:\n[\n    {\n        \"Id\": \"cb12abd0421d5330b0db4b77bb58c0e4fff8609a74fc9c8a3fe2d8af92b3785b\",\n        \"Created\": \"2026-08-30T13:06:41.070199462Z\",\n        \"Path\": \"/docker-entrypoint.sh\",\n        \"Args\": [\n            \"nginx\",\n            \"-g\",\n            \"daemon off;\"\n        ],\n        \"State\": {\n   \n\n[Logs]:\n/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration\n/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh\n10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf\n10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf\n/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh\n/docker-entrypoint.sh: Configuration complete; ready for start up\n\n\n",
+      "[2026-08-30T13:06:53.798Z] DEPLOYMENT FAILED: HEALTH_CHECK_FAILED: Probe to http://localhost:8622 failed under LOCAL DOCKER",
+      "[2026-08-30T13:09:56.811Z] Deployment resources cleaned up via LOCAL DOCKER. Status set to DELETED."
+    ],
+    "repositoryModel": {
+      "name": "dep-5583",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Generic Web Application",
+      "services": [
+        {
+          "name": "dep-5583",
+          "type": "Generic Web Application",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        80
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/dep-5583:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Docker",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# 🚀 SmartRoute – Optimized Path Finder (Supportive Sailers)\n\nSmartRoute is a smart route planning web application designed to help delivery services and logistics teams find **fastest, traffic-optimized routes** between two locations using interactive map technology.\n\n🔗 **Live Demo**: [Click to view](https://harshtrivedi456.github.io/SupportiveSailers/)\n\n---\n\n## 📌 Features\n\n- 🗺️ Interactive Map using Leaflet.js\n- 📍 Input source and destination coordinates\n- 🚦 Optimized path rendering for t",
+        "detectedTechStack": [
+          "Redis"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Generic Web Application",
+    "containerPort": 5000,
+    "hostPort": 8622,
+    "containerId": "forgeops-analysis-1788095187267-dep-5583",
+    "endpoint": "http://localhost:8622",
+    "error": "HEALTH_CHECK_FAILED: Probe to http://localhost:8622 failed under LOCAL DOCKER",
+    "duration": "18s",
+    "completedAt": "2026-08-30T13:09:56.811Z"
+  },
+  {
+    "id": "dep-8597",
+    "serviceName": "analysis-1788094778538",
+    "repoUrl": "https://github.com/rajpatel10124/SupportiveSailers",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "DELETED",
+    "createdAt": "2026-08-30T12:59:48.598Z",
+    "commitSha": "64ecd27",
+    "logs": [
+      "[2026-08-30T12:59:48.598Z] Deployment queued for analysis-1788094778538 on target local-docker",
+      "[2026-08-30T12:59:48.602Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-08-30T12:59:48.605Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-30T12:59:51.401Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-30T12:59:51.403Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/SupportiveSailers...",
+      "[2026-08-30T12:59:54.026Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-30T12:59:54.031Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-08-30T12:59:54.035Z] Canonical Container Port: 5000",
+      "[2026-08-30T12:59:54.037Z] Service Name: analysis-1788094778538",
+      "[2026-08-30T12:59:54.039Z] Step 4/8: Building application container image...",
+      "[2026-08-30T12:59:54.043Z] Initiating build process for analysis-1788094778538 (Generic Web Application)...",
+      "[2026-08-30T12:59:54.045Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-8597/Dockerfile.",
+      "[2026-08-30T12:59:54.047Z] Executing 'docker build -t forgeops/analysis-1788094778538:64ecd27 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-8597\"'...",
+      "[2026-08-30T12:59:55.478Z] Docker build complete for forgeops/analysis-1788094778538:64ecd27.",
+      "[2026-08-30T12:59:55.481Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-08-30T12:59:55.516Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-08-30T12:59:55.614Z] [LOCAL DOCKER] Starting container 'forgeops-analysis-1788094778538-dep-8597' (-p 9553:5000)...",
+      "[2026-08-30T12:59:59.957Z] Step 6/8: Verifying health probe on endpoint http://localhost:9553...",
+      "[2026-08-30T12:59:59.960Z] [LOCAL DOCKER] Probing endpoint http://localhost:9553/...",
+      "\n======================================================\nLOCAL DOCKER DIAGNOSTICS FOR forgeops-analysis-1788094778538-dep-8597\n======================================================\n[Inspect]:\n[\n    {\n        \"Id\": \"ba9d090fe863b6f8a85e4b44684aaa21886dca194878f16fe1d122a68542a818\",\n        \"Created\": \"2026-08-30T12:59:55.687042643Z\",\n        \"Path\": \"/docker-entrypoint.sh\",\n        \"Args\": [\n            \"nginx\",\n            \"-g\",\n            \"daemon off;\"\n        ],\n        \"State\": {\n   \n\n[Logs]:\n/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration\n/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh\n10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf\n10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf\n/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh\n/docker-entrypoint.sh: Configuration complete; ready for start up\n\n\n",
+      "[2026-08-30T13:00:10.179Z] DEPLOYMENT FAILED: HEALTH_CHECK_FAILED: Probe to http://localhost:9553 failed under LOCAL DOCKER",
+      "[2026-08-30T13:09:59.578Z] Deployment resources cleaned up via LOCAL DOCKER. Status set to DELETED."
+    ],
+    "repositoryModel": {
+      "name": "dep-8597",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Generic Web Application",
+      "services": [
+        {
+          "name": "dep-8597",
+          "type": "Generic Web Application",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        80
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/dep-8597:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Docker",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# 🚀 SmartRoute – Optimized Path Finder (Supportive Sailers)\n\nSmartRoute is a smart route planning web application designed to help delivery services and logistics teams find **fastest, traffic-optimized routes** between two locations using interactive map technology.\n\n🔗 **Live Demo**: [Click to view](https://harshtrivedi456.github.io/SupportiveSailers/)\n\n---\n\n## 📌 Features\n\n- 🗺️ Interactive Map using Leaflet.js\n- 📍 Input source and destination coordinates\n- 🚦 Optimized path rendering for t",
+        "detectedTechStack": [
+          "Redis"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Generic Web Application",
+    "containerPort": 5000,
+    "hostPort": 9553,
+    "containerId": "forgeops-analysis-1788094778538-dep-8597",
+    "endpoint": "http://localhost:9553",
+    "error": "HEALTH_CHECK_FAILED: Probe to http://localhost:9553 failed under LOCAL DOCKER",
+    "duration": "22s",
+    "completedAt": "2026-08-30T13:09:59.578Z"
+  },
+  {
+    "id": "dep-4201",
+    "serviceName": "analysis-1788093085253",
+    "repoUrl": "https://github.com/rajpatel10124/SupportiveSailers",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "DELETED",
+    "createdAt": "2026-08-30T12:31:34.201Z",
+    "commitSha": "64ecd27",
+    "logs": [
+      "[2026-08-30T12:31:34.201Z] Deployment queued for analysis-1788093085253 on target local-docker",
+      "[2026-08-30T12:31:34.206Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-08-30T12:31:34.209Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-30T12:31:37.826Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-30T12:31:37.828Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/SupportiveSailers...",
+      "[2026-08-30T12:31:40.275Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-30T12:31:40.279Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-08-30T12:31:40.281Z] Canonical Container Port: 5000",
+      "[2026-08-30T12:31:40.283Z] Service Name: analysis-1788093085253",
+      "[2026-08-30T12:31:40.287Z] Step 4/8: Building application container image...",
+      "[2026-08-30T12:31:40.290Z] Initiating build process for analysis-1788093085253 (Generic Web Application)...",
+      "[2026-08-30T12:31:40.293Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-4201/Dockerfile.",
+      "[2026-08-30T12:31:40.294Z] Executing 'docker build -t forgeops/analysis-1788093085253:64ecd27 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-4201\"'...",
+      "[2026-08-30T12:31:41.651Z] Docker build complete for forgeops/analysis-1788093085253:64ecd27.",
+      "[2026-08-30T12:31:41.653Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-08-30T12:31:41.773Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-08-30T12:31:41.866Z] [LOCAL DOCKER] Starting container 'forgeops-analysis-1788093085253-dep-4201' (-p 9019:5000)...",
+      "[2026-08-30T12:31:45.591Z] Step 6/8: Verifying health probe on endpoint http://localhost:9019...",
+      "[2026-08-30T12:31:45.594Z] [LOCAL DOCKER] Probing endpoint http://localhost:9019/...",
+      "\n======================================================\nLOCAL DOCKER DIAGNOSTICS FOR forgeops-analysis-1788093085253-dep-4201\n======================================================\n[Inspect]:\n[\n    {\n        \"Id\": \"b0ef334897114e7d92fd5a71b4dc6f784fdacf30eb92d310de7f211abb1b8e7d\",\n        \"Created\": \"2026-08-30T12:31:41.933091952Z\",\n        \"Path\": \"/docker-entrypoint.sh\",\n        \"Args\": [\n            \"nginx\",\n            \"-g\",\n            \"daemon off;\"\n        ],\n        \"State\": {\n   \n\n[Logs]:\n/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration\n/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh\n10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf\n10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf\n/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh\n/docker-entrypoint.sh: Configuration complete; ready for start up\n\n\n",
+      "[2026-08-30T12:31:55.820Z] DEPLOYMENT FAILED: HEALTH_CHECK_FAILED: Probe to http://localhost:9019 failed under LOCAL DOCKER",
+      "[2026-08-30T13:30:27.231Z] Deployment resources cleaned up via LOCAL DOCKER. Status set to DELETED."
+    ],
+    "repositoryModel": {
+      "name": "dep-4201",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Generic Web Application",
+      "services": [
+        {
+          "name": "dep-4201",
+          "type": "Generic Web Application",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        80
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/dep-4201:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Docker",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# 🚀 SmartRoute – Optimized Path Finder (Supportive Sailers)\n\nSmartRoute is a smart route planning web application designed to help delivery services and logistics teams find **fastest, traffic-optimized routes** between two locations using interactive map technology.\n\n🔗 **Live Demo**: [Click to view](https://harshtrivedi456.github.io/SupportiveSailers/)\n\n---\n\n## 📌 Features\n\n- 🗺️ Interactive Map using Leaflet.js\n- 📍 Input source and destination coordinates\n- 🚦 Optimized path rendering for t",
+        "detectedTechStack": [
+          "Redis"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Generic Web Application",
+    "containerPort": 5000,
+    "hostPort": 9019,
+    "containerId": "forgeops-analysis-1788093085253-dep-4201",
+    "endpoint": "http://localhost:9019",
+    "error": "HEALTH_CHECK_FAILED: Probe to http://localhost:9019 failed under LOCAL DOCKER",
+    "duration": "22s",
+    "completedAt": "2026-08-30T13:30:27.231Z"
+  },
+  {
+    "id": "dep-0529",
+    "serviceName": "analysis-1788092609088",
+    "repoUrl": "https://github.com/rajpatel10124/SupportiveSailers",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-30T12:23:40.529Z",
+    "commitSha": "64ecd27",
+    "logs": [
+      "[2026-08-30T12:23:40.529Z] Deployment queued for analysis-1788092609088 on target local-docker",
+      "[2026-08-30T12:23:40.538Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-08-30T12:23:40.540Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-30T12:23:40.875Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-30T12:23:40.878Z] OPA Policy Guardrails: Validating deployment spec...",
+      "[2026-08-30T12:23:40.879Z] ✓ OPA Policy Guardrail Check Passed.",
+      "[2026-08-30T12:23:40.882Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/SupportiveSailers...",
+      "[2026-08-30T12:23:43.194Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-30T12:23:43.198Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-08-30T12:23:43.200Z] Canonical Container Port: 5000",
+      "[2026-08-30T12:23:43.202Z] Service Name: analysis-1788092609088",
+      "[2026-08-30T12:23:43.204Z] Step 4/8: Building application container image...",
+      "[2026-08-30T12:23:43.208Z] Initiating build process for analysis-1788092609088 (Generic Web Application)...",
+      "[2026-08-30T12:23:43.210Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-0529/Dockerfile.",
+      "[2026-08-30T12:23:43.211Z] Executing 'docker build -t forgeops/analysis-1788092609088:64ecd27 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-0529\"'...",
+      "[2026-08-30T12:23:44.192Z] Docker build complete for forgeops/analysis-1788092609088:64ecd27.",
+      "[2026-08-30T12:23:44.194Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-08-30T12:23:44.297Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-08-30T12:23:44.345Z] [LOCAL DOCKER] Starting container 'forgeops-analysis-1788092609088-dep-0529' (-p 8862:5000)...",
+      "[2026-08-30T12:23:47.740Z] Step 6/8: Verifying health probe on endpoint http://localhost:8862...",
+      "[2026-08-30T12:23:47.743Z] [LOCAL DOCKER] Probing endpoint http://localhost:8862/...",
+      "\n======================================================\nLOCAL DOCKER DIAGNOSTICS FOR forgeops-analysis-1788092609088-dep-0529\n======================================================\n[Inspect]:\n[\n    {\n        \"Id\": \"abce045f076f359ad9cd8a4577d998239e0b08f97917d961e8046f4f23f56983\",\n        \"Created\": \"2026-08-30T12:23:44.42848788Z\",\n        \"Path\": \"/docker-entrypoint.sh\",\n        \"Args\": [\n            \"nginx\",\n            \"-g\",\n            \"daemon off;\"\n        ],\n        \"State\": {\n    \n\n[Logs]:\n/docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration\n/docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh\n10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf\n10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf\n/docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh\n/docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh\n/docker-entrypoint.sh: Configuration complete; ready for start up\n\n\n",
+      "[2026-08-30T12:23:57.961Z] DEPLOYMENT FAILED: HEALTH_CHECK_FAILED: Probe to http://localhost:8862 failed under LOCAL DOCKER"
+    ],
+    "repositoryModel": {
+      "name": "dep-0529",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Generic Web Application",
+      "services": [
+        {
+          "name": "dep-0529",
+          "type": "Generic Web Application",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        80
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/dep-0529:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "ForgeOps Pipeline",
+      "orchestration": "Docker",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# 🚀 SmartRoute – Optimized Path Finder (Supportive Sailers)\n\nSmartRoute is a smart route planning web application designed to help delivery services and logistics teams find **fastest, traffic-optimized routes** between two locations using interactive map technology.\n\n🔗 **Live Demo**: [Click to view](https://harshtrivedi456.github.io/SupportiveSailers/)\n\n---\n\n## 📌 Features\n\n- 🗺️ Interactive Map using Leaflet.js\n- 📍 Input source and destination coordinates\n- 🚦 Optimized path rendering for t",
+        "detectedTechStack": [
+          "Redis"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Generic Web Application",
+    "containerPort": 5000,
+    "hostPort": 8862,
+    "containerId": "forgeops-analysis-1788092609088-dep-0529",
+    "endpoint": "http://localhost:8862",
+    "error": "HEALTH_CHECK_FAILED: Probe to http://localhost:8862 failed under LOCAL DOCKER",
+    "duration": "17s"
+  },
+  {
+    "id": "dep-7748",
+    "serviceName": "mern-ecommerce",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "MONGO_URI": "mongodb://forgeops-mongo-dev:27017/merndb",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "DELETED",
+    "createdAt": "2026-08-30T07:48:17.748Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-30T07:48:17.748Z] Deployment queued for frontend on target local-docker",
+      "[2026-08-30T07:48:17.751Z] Step 1/8: Pre-flight validation via Target Adapter 'LOCAL DOCKER'...",
+      "[2026-08-30T07:48:17.754Z] Target Adapter [LOCAL DOCKER]: Pre-flight checking Docker daemon...",
+      "[2026-08-30T07:48:20.725Z] ✓ Local Docker daemon active & responsive.",
+      "[2026-08-30T07:48:20.728Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T07:48:23.101Z] Step 3/8: Constructing RepositoryModel & DeploymentSpec...",
+      "[2026-08-30T07:48:23.105Z] Target Adapter Selected: LOCAL DOCKER",
+      "[2026-08-30T07:48:23.108Z] Canonical Container Port: 5000",
+      "[2026-08-30T07:48:23.109Z] Service Name: mern-ecommerce",
+      "[2026-08-30T07:48:23.111Z] Step 4/8: Building application container image...",
+      "[2026-08-30T07:48:23.112Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-30T07:48:23.113Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-7748/Dockerfile.",
+      "[2026-08-30T07:48:23.115Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-7748\"'...",
+      "[2026-08-30T07:48:23.557Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-30T07:48:23.559Z] Step 5/8: Executing workload deployment via 'LOCAL DOCKER'...",
+      "[2026-08-30T07:48:23.607Z] [LOCAL DOCKER] Ensuring MongoDB container 'forgeops-mongo-dev' on forgeops-net...",
+      "[2026-08-30T07:48:23.683Z] [LOCAL DOCKER] Ensuring Redis container 'forgeops-redis-dev' on forgeops-net...",
+      "[2026-08-30T07:48:23.715Z] [LOCAL DOCKER] Starting container 'forgeops-mern-ecommerce-dep-7748' (-p 8777:5000)...",
+      "[2026-08-30T07:48:26.467Z] Step 6/8: Verifying health probe on endpoint http://localhost:8777...",
+      "[2026-08-30T07:48:26.469Z] [LOCAL DOCKER] Probing endpoint http://localhost:8777/...",
+      "[2026-08-30T07:48:28.545Z] ✓ [LOCAL DOCKER] Health probe succeeded (HTTP 200)",
+      "[2026-08-30T07:48:28.548Z] Step 7/8: Registering service in Backstage Software Catalog...",
+      "[2026-08-30T07:48:28.550Z] Step 8/8: Deployment completed! Active Endpoint: http://localhost:8777",
+      "[2026-08-30T08:04:44.179Z] Deployment resources cleaned up via LOCAL DOCKER. Status set to DELETED."
+    ],
+    "repositoryModel": {
+      "name": "frontend",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "frontend",
+          "type": "Node.js Application",
+          "framework": "React",
+          "port": 5000,
+          "healthEndpoint": "/"
+        },
+        {
+          "name": "mern-ecommerce",
+          "type": "Full-Stack Node.js / React Application",
+          "framework": "MERN Stack",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        5000
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/frontend:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "Jenkins",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "NGINX Ingress",
+      "monitoring": [
+        "Prometheus",
+        "Grafana"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# MERN E-Commerce Platform - DevOps Deployment Project\n\n## Project Overview\n\nThis project demonstrates the deployment of a MERN-based E-Commerce application using a complete DevOps workflow on AWS.\n\nThe application is containerized using Docker, integrated with Jenkins CI/CD, deployed on a self-managed Kubernetes cluster, and monitored using Prometheus and Grafana.\n\nThe goal of this project was to simulate a production-style deployment environment while learning core DevOps tools and practices.\n",
+        "detectedTechStack": [
+          "MERN Stack",
+          "React",
+          "Express/Node.js",
+          "MongoDB",
+          "Redis",
+          "Jenkins CI/CD",
+          "Kubernetes",
+          "NGINX Ingress",
+          "Prometheus",
+          "Grafana"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Full-Stack Node.js / React Application",
+    "containerPort": 5000,
+    "hostPort": 8777,
+    "containerId": "forgeops-mern-ecommerce-dep-7748",
+    "endpoint": "http://localhost:8777",
+    "duration": "11s",
+    "completedAt": "2026-08-30T08:04:44.179Z"
+  },
+  {
+    "id": "dep-4819",
+    "serviceName": "online-shop",
+    "repoUrl": "https://github.com/rajpatel10124/online-app",
+    "environment": "development",
+    "target": "aws-eks",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 80,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "8080"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "cloudConfig": {
+      "region": "us-east-1",
+      "accessKeyId": "${AWS_ACCESS_KEY_ID}",
+      "secretAccessKey": "${AWS_SECRET_ACCESS_KEY}",
+      "clusterName": "forgeops-production-eks"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-30T07:23:44.819Z",
+    "commitSha": "fetching...",
+    "logs": [
+      "[2026-08-30T07:23:44.819Z] Deployment queued for online-shop on target aws-eks",
+      "[2026-08-30T07:23:44.822Z] Step 1/8: Pre-flight validation via Target Adapter 'AWS EKS'...",
+      "[2026-08-30T07:23:44.825Z] Target Adapter [AWS EKS]: Pre-flight validating AWS CLI & EKS credentials...",
+      "[2026-08-30T07:23:48.838Z] DEPLOYMENT FAILED AT PRE-FLIGHT: EKS_PREFLIGHT_FAILED: AWS CLI or kubectl is not installed on system path.",
+      "[2026-08-30T07:23:48.841Z] DEPLOYMENT FAILED: EKS_PREFLIGHT_FAILED: AWS CLI or kubectl is not installed on system path."
+    ],
+    "error": "EKS_PREFLIGHT_FAILED: AWS CLI or kubectl is not installed on system path.",
+    "duration": "4s"
+  },
+  {
+    "id": "dep-7808",
+    "serviceName": "online-shop",
+    "repoUrl": "https://github.com/rajpatel10124/online-app",
+    "environment": "development",
+    "target": "aws-eks",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 80,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "80"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "cloudConfig": {
+      "region": "us-east-1",
+      "accessKeyId": "${AWS_ACCESS_KEY_ID}",
+      "secretAccessKey": "${AWS_SECRET_ACCESS_KEY}",
+      "clusterName": "forgeops-production-eks"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-30T07:20:57.808Z",
+    "commitSha": "9013465",
+    "logs": [
+      "[2026-08-30T07:20:57.808Z] Redeployment triggered.",
+      "[2026-08-30T07:20:57.812Z] Step 1/8: Pre-flight validation via Target Adapter 'AWS EKS'...",
+      "[2026-08-30T07:20:57.815Z] Target Adapter [AWS EKS]: Pre-flight validating AWS CLI & EKS credentials...",
+      "[2026-08-30T07:21:01.834Z] DEPLOYMENT FAILED AT PRE-FLIGHT: EKS_PREFLIGHT_FAILED: AWS CLI or kubectl is not installed on system path.",
+      "[2026-08-30T07:21:01.835Z] DEPLOYMENT FAILED: EKS_PREFLIGHT_FAILED: AWS CLI or kubectl is not installed on system path."
+    ],
+    "repositoryModel": {
+      "name": "online-shop",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "online-shop",
+          "type": "Node.js Application",
+          "framework": "React",
+          "port": 80,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        80,
+        3000
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/online-shop:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "Jenkins",
+      "orchestration": "Docker",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [
+        "Prometheus",
+        "Grafana"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# Automated GitOps CI/CD Pipeline with Live Infrastructure Monitoring\n\nThis repository demonstrates a production-ready, self-hosted GitOps automation and observability architecture implemented on an AWS cloud environment. Taking a decoupled frontend e-commerce storefront application, the entire infrastructure, delivery pipeline, containerization strategy, and telemetry stack were built from scratch to establish an enterprise-grade deployment lifecycle.\n\n---\n\n## 🏗️ System Architecture Overview\n\n",
+        "detectedTechStack": [
+          "Express/Node.js",
+          "Jenkins CI/CD",
+          "Prometheus",
+          "Grafana"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Node.js Application",
+    "containerPort": 80,
+    "hostPort": 8754,
+    "error": "EKS_PREFLIGHT_FAILED: AWS CLI or kubectl is not installed on system path.",
+    "duration": "4s"
+  },
+  {
+    "id": "dep-4539",
+    "serviceName": "online-shop",
+    "repoUrl": "https://github.com/rajpatel10124/online-app",
+    "environment": "development",
+    "target": "aws-eks",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 80,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "80"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "cloudConfig": {
+      "region": "us-east-1",
+      "accessKeyId": "${AWS_ACCESS_KEY_ID}",
+      "secretAccessKey": "${AWS_SECRET_ACCESS_KEY}",
+      "clusterName": "forgeops-production-eks"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-30T07:15:24.541Z",
+    "commitSha": "9013465",
+    "logs": [
+      "[2026-08-30T07:15:24.541Z] Deployment queued for online-shop on target aws-eks",
+      "[2026-08-30T07:15:24.543Z] Step 1/8: Pre-flight target validation for 'aws-eks'...",
+      "[2026-08-30T07:15:24.544Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/online-app...",
+      "[2026-08-30T07:15:26.547Z] Step 3/8: Autonomous discovery & RepositoryModel construction...",
+      "[2026-08-30T07:15:26.552Z] Architecture Model: Node.js Application",
+      "[2026-08-30T07:15:26.553Z] Canonical Container Port: 80",
+      "[2026-08-30T07:15:26.555Z] Host Port Mapping: 8754 -> 80",
+      "[2026-08-30T07:15:26.556Z] Step 4/8: Building application container image...",
+      "[2026-08-30T07:15:26.557Z] Initiating build process for online-shop (Node.js Application)...",
+      "[2026-08-30T07:15:26.558Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-4539/Dockerfile.",
+      "[2026-08-30T07:15:26.560Z] Executing 'docker build -t forgeops/online-shop:9013465 \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-4539\"'...",
+      "[2026-08-30T07:15:27.554Z] Docker build complete for forgeops/online-shop:9013465.",
+      "[2026-08-30T07:15:27.555Z] Step 5/8: Deploying workload to target 'aws-eks'...",
+      "[2026-08-30T07:15:27.557Z] Step 6/8: Verifying layered application health at http://localhost:8754/...",
+      "\n======================================================\nCONTAINER DIAGNOSTIC REPORT\n======================================================\nContainer: forgeops-online-shop-dep-4539\nTarget URL: http://localhost:8754/\nMapped Port: 8754 -> 80\n\n[1] CONTAINER STATUS: Command failed: docker inspect forgeops-online-shop-dep-4539\nerror: no such object: forgeops-online-shop-dep-4539\n\n\n[2] DOCKER PORT MAPPINGS: Command failed: docker port forgeops-online-shop-dep-4539\nError response from daemon: No such container: forgeops-online-shop-dep-4539\n\n\n[3] LISTEN SOCKETS: Command failed: docker exec forgeops-online-shop-dep-4539 sh -c \"ss -lntp 2>/dev/null || netstat -lntp 2>/dev/null\"\nError response from daemon: No such container: forgeops-online-shop-dep-4539\n\n\n[4] RECENT LOGS: Command failed: docker logs --tail 30 forgeops-online-shop-dep-4539\nError response from daemon: No such container: forgeops-online-shop-dep-4539\n\n\n",
+      "[2026-08-30T07:15:41.301Z] DEPLOYMENT FAILED: HEALTH_CHECK_FAILED: HTTP probe to http://localhost:8754/ returned status 0"
+    ],
+    "repositoryModel": {
+      "name": "online-shop",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "online-shop",
+          "type": "Node.js Application",
+          "framework": "React",
+          "port": 80,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        80,
+        3000
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/online-shop:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "Jenkins",
+      "orchestration": "Docker",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "Standard Ingress",
+      "monitoring": [
+        "Prometheus",
+        "Grafana"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# Automated GitOps CI/CD Pipeline with Live Infrastructure Monitoring\n\nThis repository demonstrates a production-ready, self-hosted GitOps automation and observability architecture implemented on an AWS cloud environment. Taking a decoupled frontend e-commerce storefront application, the entire infrastructure, delivery pipeline, containerization strategy, and telemetry stack were built from scratch to establish an enterprise-grade deployment lifecycle.\n\n---\n\n## 🏗️ System Architecture Overview\n\n",
+        "detectedTechStack": [
+          "Express/Node.js",
+          "Jenkins CI/CD",
+          "Prometheus",
+          "Grafana"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Node.js Application",
+    "containerPort": 80,
+    "hostPort": 8754,
+    "error": "HEALTH_CHECK_FAILED: HTTP probe to http://localhost:8754/ returned status 0",
+    "duration": "17s"
+  },
+  {
+    "id": "dep-6308",
+    "serviceName": "mern-ecommerce",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "MONGO_URI": "mongodb://forgeops-mongo-dev:27017/merndb",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379",
+      "UPSTASH_REDIS_REST_TOKEN": "devtoken"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "DELETED",
+    "createdAt": "2026-08-30T07:09:06.309Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-30T07:09:06.309Z] Deployment queued for frontend on target local-k8s",
+      "[2026-08-30T07:09:06.313Z] Step 1/8: Pre-flight target validation for 'local-k8s'...",
+      "[2026-08-30T07:09:14.326Z] ⚠️ Local Kubernetes API unreachable (Minikube/Kind server offline): Command failed: kubectl cluster-info\nE0830 12:39:09.627935   78407 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://192.168.58.2:8443/api?timeout=32s\\\": dial tcp 192.168.58.2:8443: connect: no route to host\"\nE0830 12:39:12.699483   78407 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://192.168.58.2:8443/api?timeout=32s\\\": dial tcp 192.168.58.2:8443: connect: no route to host\"\n",
+      "[2026-08-30T07:09:14.328Z] 🔄 Automatically switching target execution mode to 'local-docker' for containerized deployment...",
+      "[2026-08-30T07:09:14.330Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T07:09:18.216Z] Step 3/8: Autonomous discovery & RepositoryModel construction...",
+      "[2026-08-30T07:09:18.223Z] Architecture Model: Full-Stack Node.js / React Application",
+      "[2026-08-30T07:09:18.224Z] Canonical Container Port: 5000",
+      "[2026-08-30T07:09:18.225Z] Host Port Mapping: 8983 -> 5000",
+      "[2026-08-30T07:09:18.227Z] Step 4/8: Building application container image...",
+      "[2026-08-30T07:09:18.229Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-30T07:09:18.229Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-6308/Dockerfile.",
+      "[2026-08-30T07:09:18.230Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-6308\"'...",
+      "[2026-08-30T07:09:19.434Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-30T07:09:19.435Z] Step 5/8: Deploying workload to target 'local-docker'...",
+      "[2026-08-30T07:09:19.570Z] Ensuring MongoDB container 'forgeops-mongo-dev' is active on forgeops-net...",
+      "[2026-08-30T07:09:19.745Z] Ensuring Redis container 'forgeops-redis-dev' is active on forgeops-net...",
+      "[2026-08-30T07:09:19.776Z] Starting workload container 'forgeops-mern-ecommerce-dep-6308' (-p 8983:5000)...",
+      "[2026-08-30T07:09:24.866Z] Container 'forgeops-mern-ecommerce-dep-6308' active on http://localhost:8983",
+      "[2026-08-30T07:09:24.867Z] Step 6/8: Verifying layered application health at http://localhost:8983/...",
+      "[2026-08-30T07:09:26.935Z] ✓ Health probe passed! HTTP Status Code: 200",
+      "[2026-08-30T07:09:26.961Z] Layer 7 API Probe: GET http://localhost:8983/api/products => HTTP 401",
+      "[2026-08-30T07:09:26.962Z] Step 7/8: Registering service in Software Catalog...",
+      "[2026-08-30T07:09:26.966Z] Step 8/8: Deployment successfully completed! Final Active URL: http://localhost:8983",
+      "[2026-08-30T07:18:37.284Z] Deployment resources cleaned up. Status set to DELETED."
+    ],
+    "repositoryModel": {
+      "name": "frontend",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "frontend",
+          "type": "Node.js Application",
+          "framework": "React",
+          "port": 5000,
+          "healthEndpoint": "/"
+        },
+        {
+          "name": "mern-ecommerce",
+          "type": "Full-Stack Node.js / React Application",
+          "framework": "MERN Stack",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        5000
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/frontend:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "Jenkins",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "NGINX Ingress",
+      "monitoring": [
+        "Prometheus",
+        "Grafana"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# MERN E-Commerce Platform - DevOps Deployment Project\n\n## Project Overview\n\nThis project demonstrates the deployment of a MERN-based E-Commerce application using a complete DevOps workflow on AWS.\n\nThe application is containerized using Docker, integrated with Jenkins CI/CD, deployed on a self-managed Kubernetes cluster, and monitored using Prometheus and Grafana.\n\nThe goal of this project was to simulate a production-style deployment environment while learning core DevOps tools and practices.\n",
+        "detectedTechStack": [
+          "MERN Stack",
+          "React",
+          "Express/Node.js",
+          "MongoDB",
+          "Redis",
+          "Jenkins CI/CD",
+          "Kubernetes",
+          "NGINX Ingress",
+          "Prometheus",
+          "Grafana"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Full-Stack Node.js / React Application",
+    "containerPort": 5000,
+    "hostPort": 8983,
+    "containerId": "forgeops-mern-ecommerce-dep-6308",
+    "endpoint": "http://localhost:8983",
+    "duration": "21s",
+    "completedAt": "2026-08-30T07:18:37.284Z"
+  },
+  {
+    "id": "dep-9594",
+    "serviceName": "frontend",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-k8s",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "8080"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-30T07:01:59.594Z",
+    "commitSha": "fetching...",
+    "logs": [
+      "[2026-08-30T07:01:59.594Z] Deployment queued for frontend on target local-k8s",
+      "[2026-08-30T07:01:59.596Z] Step 1/8: Pre-flight target validation for 'local-k8s'...",
+      "[2026-08-30T07:02:07.618Z] DEPLOYMENT FAILED: Command failed: kubectl cluster-info\nE0830 12:32:02.811499   75965 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://192.168.58.2:8443/api?timeout=32s\\\": dial tcp 192.168.58.2:8443: connect: no route to host\"\nE0830 12:32:05.884499   75965 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://192.168.58.2:8443/api?timeout=32s\\\": dial tcp 192.168.58.2:8443: connect: no route to host\"\n"
+    ],
+    "error": "Command failed: kubectl cluster-info\nE0830 12:32:02.811499   75965 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://192.168.58.2:8443/api?timeout=32s\\\": dial tcp 192.168.58.2:8443: connect: no route to host\"\nE0830 12:32:05.884499   75965 memcache.go:265] \"Unhandled Error\" err=\"couldn't get current server API group list: Get \\\"https://192.168.58.2:8443/api?timeout=32s\\\": dial tcp 192.168.58.2:8443: connect: no route to host\"\n",
+    "duration": "8s"
+  },
+  {
+    "id": "dep-9385",
+    "serviceName": "mern-ecommerce",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "MONGO_URI": "mongodb://forgeops-mongo-dev:27017/merndb",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379",
+      "UPSTASH_REDIS_REST_TOKEN": "devtoken"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "DELETED",
+    "createdAt": "2026-08-30T07:00:19.386Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-30T07:00:19.386Z] Deployment queued for frontend on target local-docker",
+      "[2026-08-30T07:00:19.388Z] Step 1/8: Pre-flight target validation for 'local-docker'...",
+      "[2026-08-30T07:00:21.981Z] ✓ Docker daemon active.",
+      "[2026-08-30T07:00:21.982Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T07:00:26.091Z] Step 3/8: Autonomous discovery & RepositoryModel construction...",
+      "[2026-08-30T07:00:26.097Z] Architecture Model: Full-Stack Node.js / React Application",
+      "[2026-08-30T07:00:26.098Z] Canonical Container Port: 5000",
+      "[2026-08-30T07:00:26.098Z] Host Port Mapping: 8526 -> 5000",
+      "[2026-08-30T07:00:26.099Z] Step 4/8: Building application container image...",
+      "[2026-08-30T07:00:26.100Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-30T07:00:26.101Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-9385/Dockerfile.",
+      "[2026-08-30T07:00:26.102Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-9385\"'...",
+      "[2026-08-30T07:00:26.422Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-30T07:00:26.423Z] Step 5/8: Deploying workload to target 'local-docker'...",
+      "[2026-08-30T07:00:26.453Z] Ensuring MongoDB container 'forgeops-mongo-dev' is active on forgeops-net...",
+      "[2026-08-30T07:00:26.510Z] Ensuring Redis container 'forgeops-redis-dev' is active on forgeops-net...",
+      "[2026-08-30T07:00:26.542Z] Starting workload container 'forgeops-mern-ecommerce-dep-9385' (-p 8526:5000)...",
+      "[2026-08-30T07:00:30.177Z] Container 'forgeops-mern-ecommerce-dep-9385' active on http://localhost:8526",
+      "[2026-08-30T07:00:30.178Z] Step 6/8: Verifying layered application health at http://localhost:8526/...",
+      "[2026-08-30T07:00:32.246Z] ✓ Health probe passed! HTTP Status Code: 200",
+      "[2026-08-30T07:00:32.271Z] Layer 7 API Probe: GET http://localhost:8526/api/products => HTTP 401",
+      "[2026-08-30T07:00:32.272Z] Step 7/8: Registering service in Software Catalog...",
+      "[2026-08-30T07:00:32.274Z] Step 8/8: Deployment successfully completed! Final Active URL: http://localhost:8526",
+      "[2026-08-30T07:01:29.507Z] Deployment resources cleaned up. Status set to DELETED."
+    ],
+    "repositoryModel": {
+      "name": "frontend",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "frontend",
+          "type": "Node.js Application",
+          "framework": "React",
+          "port": 5000,
+          "healthEndpoint": "/"
+        },
+        {
+          "name": "mern-ecommerce",
+          "type": "Full-Stack Node.js / React Application",
+          "framework": "MERN Stack",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        5000
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/frontend:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "Jenkins",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "NGINX Ingress",
+      "monitoring": [
+        "Prometheus",
+        "Grafana"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# MERN E-Commerce Platform - DevOps Deployment Project\n\n## Project Overview\n\nThis project demonstrates the deployment of a MERN-based E-Commerce application using a complete DevOps workflow on AWS.\n\nThe application is containerized using Docker, integrated with Jenkins CI/CD, deployed on a self-managed Kubernetes cluster, and monitored using Prometheus and Grafana.\n\nThe goal of this project was to simulate a production-style deployment environment while learning core DevOps tools and practices.\n",
+        "detectedTechStack": [
+          "MERN Stack",
+          "React",
+          "Express/Node.js",
+          "MongoDB",
+          "Redis",
+          "Jenkins CI/CD",
+          "Kubernetes",
+          "NGINX Ingress",
+          "Prometheus",
+          "Grafana"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Full-Stack Node.js / React Application",
+    "containerPort": 5000,
+    "hostPort": 8526,
+    "containerId": "forgeops-mern-ecommerce-dep-9385",
+    "endpoint": "http://localhost:8526",
+    "duration": "13s",
+    "completedAt": "2026-08-30T07:01:29.507Z"
+  },
+  {
+    "id": "dep-1244",
+    "serviceName": "mern-ecommerce",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "MONGO_URI": "mongodb://forgeops-mongo-dev:27017/merndb",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379",
+      "UPSTASH_REDIS_REST_TOKEN": "devtoken"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "DELETED",
+    "createdAt": "2026-08-30T06:46:01.244Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-30T06:46:01.244Z] Deployment queued for frontend on target local-docker",
+      "[2026-08-30T06:46:01.246Z] Step 1/8: Pre-flight target validation for 'local-docker'...",
+      "[2026-08-30T06:46:04.199Z] ✓ Docker daemon active.",
+      "[2026-08-30T06:46:04.200Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T06:46:06.891Z] Step 3/8: Autonomous discovery & RepositoryModel construction...",
+      "[2026-08-30T06:46:06.894Z] Architecture Model: Full-Stack Node.js / React Application",
+      "[2026-08-30T06:46:06.895Z] Resolved Container Port: 5000",
+      "[2026-08-30T06:46:06.896Z] Host Port Mapping: 9826 -> 5000",
+      "[2026-08-30T06:46:06.897Z] Step 4/8: Building application container image...",
+      "[2026-08-30T06:46:06.898Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-30T06:46:06.899Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-1244/Dockerfile.",
+      "[2026-08-30T06:46:06.899Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-1244\"'...",
+      "[2026-08-30T06:46:07.182Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-30T06:46:07.183Z] Step 5/8: Deploying workload to target 'local-docker'...",
+      "[2026-08-30T06:46:07.214Z] Ensuring MongoDB container 'forgeops-mongo-dev' is active on forgeops-net...",
+      "[2026-08-30T06:46:07.260Z] Ensuring Redis container 'forgeops-redis-dev' is active on forgeops-net...",
+      "[2026-08-30T06:46:07.293Z] Starting workload container 'forgeops-mern-ecommerce-dep-1244' (-p 9826:5000)...",
+      "[2026-08-30T06:46:10.271Z] ⚠️ PORT MISMATCH DETECTED: Expected 5000, actual 43959. Applying self-healing repair...",
+      "[2026-08-30T06:46:10.735Z] 🔄 Initiating Self-Healing Repair Attempt 2/3...",
+      "[2026-08-30T06:46:10.736Z] Step 1/8: Pre-flight target validation for 'local-docker'...",
+      "[2026-08-30T06:46:10.793Z] ✓ Docker daemon active.",
+      "[2026-08-30T06:46:10.794Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T06:46:14.061Z] Step 3/8: Autonomous discovery & RepositoryModel construction...",
+      "[2026-08-30T06:46:14.065Z] Architecture Model: Full-Stack Node.js / React Application",
+      "[2026-08-30T06:46:14.067Z] Resolved Container Port: 5000",
+      "[2026-08-30T06:46:14.067Z] Host Port Mapping: 9826 -> 5000",
+      "[2026-08-30T06:46:14.068Z] Step 4/8: Building application container image...",
+      "[2026-08-30T06:46:14.068Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-30T06:46:14.069Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-1244/Dockerfile.",
+      "[2026-08-30T06:46:14.069Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-1244\"'...",
+      "[2026-08-30T06:46:14.142Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-30T06:46:14.143Z] Step 5/8: Deploying workload to target 'local-docker'...",
+      "[2026-08-30T06:46:14.178Z] Ensuring MongoDB container 'forgeops-mongo-dev' is active on forgeops-net...",
+      "[2026-08-30T06:46:14.215Z] Ensuring Redis container 'forgeops-redis-dev' is active on forgeops-net...",
+      "[2026-08-30T06:46:14.247Z] Starting workload container 'forgeops-mern-ecommerce-dep-1244' (-p 9826:5000)...",
+      "[2026-08-30T06:46:14.895Z] ⚠️ PORT MISMATCH DETECTED: Expected 5000, actual 46245. Applying self-healing repair...",
+      "[2026-08-30T06:46:15.357Z] 🔄 Initiating Self-Healing Repair Attempt 3/3...",
+      "[2026-08-30T06:46:15.358Z] Step 1/8: Pre-flight target validation for 'local-docker'...",
+      "[2026-08-30T06:46:15.402Z] ✓ Docker daemon active.",
+      "[2026-08-30T06:46:15.403Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T06:46:19.589Z] Step 3/8: Autonomous discovery & RepositoryModel construction...",
+      "[2026-08-30T06:46:19.592Z] Architecture Model: Full-Stack Node.js / React Application",
+      "[2026-08-30T06:46:19.594Z] Resolved Container Port: 5000",
+      "[2026-08-30T06:46:19.595Z] Host Port Mapping: 9826 -> 5000",
+      "[2026-08-30T06:46:19.596Z] Step 4/8: Building application container image...",
+      "[2026-08-30T06:46:19.596Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-30T06:46:19.597Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-1244/Dockerfile.",
+      "[2026-08-30T06:46:19.597Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-1244\"'...",
+      "[2026-08-30T06:46:19.666Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-30T06:46:19.667Z] Step 5/8: Deploying workload to target 'local-docker'...",
+      "[2026-08-30T06:46:19.694Z] Ensuring MongoDB container 'forgeops-mongo-dev' is active on forgeops-net...",
+      "[2026-08-30T06:46:19.727Z] Ensuring Redis container 'forgeops-redis-dev' is active on forgeops-net...",
+      "[2026-08-30T06:46:19.758Z] Starting workload container 'forgeops-mern-ecommerce-dep-1244' (-p 9826:5000)...",
+      "[2026-08-30T06:46:20.421Z] ⚠️ PORT MISMATCH DETECTED: Expected 5000, actual 34183. Applying self-healing repair...",
+      "[2026-08-30T06:46:20.797Z] 🔄 Initiating Self-Healing Repair Attempt 4/3...",
+      "[2026-08-30T06:46:20.798Z] Step 1/8: Pre-flight target validation for 'local-docker'...",
+      "[2026-08-30T06:46:20.844Z] ✓ Docker daemon active.",
+      "[2026-08-30T06:46:20.845Z] Step 2/8: Cloning repository https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T06:46:24.193Z] Step 3/8: Autonomous discovery & RepositoryModel construction...",
+      "[2026-08-30T06:46:24.196Z] Architecture Model: Full-Stack Node.js / React Application",
+      "[2026-08-30T06:46:24.197Z] Resolved Container Port: 5000",
+      "[2026-08-30T06:46:24.199Z] Host Port Mapping: 9826 -> 5000",
+      "[2026-08-30T06:46:24.199Z] Step 4/8: Building application container image...",
+      "[2026-08-30T06:46:24.200Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-30T06:46:24.200Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-1244/Dockerfile.",
+      "[2026-08-30T06:46:24.201Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-1244\"'...",
+      "[2026-08-30T06:46:24.271Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-30T06:46:24.272Z] Step 5/8: Deploying workload to target 'local-docker'...",
+      "[2026-08-30T06:46:24.300Z] Ensuring MongoDB container 'forgeops-mongo-dev' is active on forgeops-net...",
+      "[2026-08-30T06:46:24.332Z] Ensuring Redis container 'forgeops-redis-dev' is active on forgeops-net...",
+      "[2026-08-30T06:46:24.366Z] Starting workload container 'forgeops-mern-ecommerce-dep-1244' (-p 9826:5000)...",
+      "[2026-08-30T06:46:25.013Z] ⚠️ PORT MISMATCH DETECTED: Expected 5000, actual 33321. Applying self-healing repair...",
+      "[2026-08-30T06:59:50.816Z] Deployment resources cleaned up. Status set to DELETED."
+    ],
+    "selfHealingAttempts": 4,
+    "repositoryModel": {
+      "name": "frontend",
+      "branch": "master",
+      "commit": "HEAD",
+      "applicationType": "Node.js Application",
+      "services": [
+        {
+          "name": "frontend",
+          "type": "Node.js Application",
+          "framework": "React",
+          "port": 5000,
+          "healthEndpoint": "/"
+        },
+        {
+          "name": "mern-ecommerce",
+          "type": "Full-Stack Node.js / React Application",
+          "framework": "MERN Stack",
+          "port": 5000,
+          "healthEndpoint": "/"
+        }
+      ],
+      "dependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "buildStrategy": "Dockerfile Build",
+      "runtime": "Node.js 22",
+      "ports": [
+        5000
+      ],
+      "environmentVariables": [],
+      "secrets": [
+        "MONGO_URI",
+        "JWT_SECRET",
+        "STRIPE_SECRET_KEY"
+      ],
+      "containerImages": [
+        "forgeops/frontend:latest"
+      ],
+      "registry": "Local Registry",
+      "ciCd": "Jenkins",
+      "orchestration": "Kubernetes",
+      "namespace": "ecommerce",
+      "kubernetesResources": [
+        "Deployment",
+        "Service",
+        "Ingress"
+      ],
+      "ingress": "NGINX Ingress",
+      "monitoring": [
+        "Prometheus",
+        "Grafana"
+      ],
+      "deploymentStrategy": "RollingUpdate",
+      "healthChecks": [
+        "/",
+        "/api/products"
+      ],
+      "externalDependencies": [
+        "MongoDB",
+        "Redis"
+      ],
+      "infrastructureRequirements": [
+        "AWS EC2",
+        "Ubuntu",
+        "Docker Engine"
+      ],
+      "readmeArchitecture": {
+        "rawSummary": "# MERN E-Commerce Platform - DevOps Deployment Project\n\n## Project Overview\n\nThis project demonstrates the deployment of a MERN-based E-Commerce application using a complete DevOps workflow on AWS.\n\nThe application is containerized using Docker, integrated with Jenkins CI/CD, deployed on a self-managed Kubernetes cluster, and monitored using Prometheus and Grafana.\n\nThe goal of this project was to simulate a production-style deployment environment while learning core DevOps tools and practices.\n",
+        "detectedTechStack": [
+          "MERN Stack",
+          "React",
+          "Express/Node.js",
+          "MongoDB",
+          "Redis",
+          "Jenkins CI/CD",
+          "Kubernetes",
+          "NGINX Ingress",
+          "Prometheus",
+          "Grafana"
+        ],
+        "matchesCode": true,
+        "differences": []
+      }
+    },
+    "appType": "Full-Stack Node.js / React Application",
+    "containerPort": 5000,
+    "hostPort": 9826,
+    "completedAt": "2026-08-30T06:59:50.816Z"
+  },
+  {
+    "id": "dep-7232",
+    "serviceName": "mern-ecommerce",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "5000",
+      "MONGO_URI": "mongodb://forgeops-mongo-dev:27017/merndb",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379",
+      "UPSTASH_REDIS_REST_TOKEN": "devtoken"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-30T06:40:47.232Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-30T06:40:47.232Z] Deployment queued for frontend on target local-docker",
+      "[2026-08-30T06:40:47.235Z] Step 1/8: Pre-flight target validation for target 'local-docker'...",
+      "[2026-08-30T06:40:49.368Z] ✓ Pre-flight check passed: Local Docker daemon is active and responsive.",
+      "[2026-08-30T06:40:49.369Z] Step 2/8: Cloning repository: https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T06:40:51.716Z] Repository cloned successfully. Commit SHA: abac06b",
+      "[2026-08-30T06:40:51.717Z] Step 3/8: Executing deep repository analysis...",
+      "[2026-08-30T06:40:51.721Z] Resolved Application Type: Full-Stack Node.js / React Application",
+      "[2026-08-30T06:40:51.721Z] Resolved Canonical Container Port: 5000",
+      "[2026-08-30T06:40:51.722Z] Resolved Host Port Mapping: 9657 -> 5000",
+      "[2026-08-30T06:40:51.722Z] Resolved Environment PORT: 5000",
+      "[2026-08-30T06:40:51.722Z] Step 4/8: Building container image...",
+      "[2026-08-30T06:40:51.723Z] Initiating build process for mern-ecommerce (Full-Stack Node.js / React Application)...",
+      "[2026-08-30T06:40:51.724Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-7232/Dockerfile.",
+      "[2026-08-30T06:40:51.724Z] Executing 'docker build -t forgeops/mern-ecommerce:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-7232\"'...",
+      "[2026-08-30T06:40:51.951Z] Docker build complete for forgeops/mern-ecommerce:abac06b.",
+      "[2026-08-30T06:40:51.952Z] Step 5/8: Deploying workload strictly to target 'local-docker'...",
+      "[2026-08-30T06:40:51.979Z] MongoDB dependency detected. Ensuring local development MongoDB container 'forgeops-mongo-dev' is active...",
+      "[2026-08-30T06:40:52.024Z] Redis dependency detected. Ensuring local development Redis container 'forgeops-redis-dev' is active...",
+      "[2026-08-30T06:40:52.052Z] LOCAL_DOCKER mode active. Starting container 'forgeops-mern-ecommerce-dep-7232' (-p 9657:5000)...",
+      "[2026-08-30T06:40:54.840Z] Container created. ID: 3f388a6b82cb",
+      "PORT_MISMATCH: Application expected to listen on port 5000, but process bound to port 32843.\nExpected: 5000\nActual: 32843\nContainer: forgeops-mern-ecommerce-dep-7232\nEnvironment PORT: 5000\nDocker Mapping: 9657 -> 5000\nRoot Cause: Application process listened on 32843 because PORT env var or server config targeted 32843.",
+      "[2026-08-30T06:40:54.972Z] DEPLOYMENT FAILED: PORT_MISMATCH: Application expected to listen on port 5000, but process bound to port 32843.\nExpected: 5000\nActual: 32843\nContainer: forgeops-mern-ecommerce-dep-7232\nEnvironment PORT: 5000\nDocker Mapping: 9657 -> 5000\nRoot Cause: Application process listened on 32843 because PORT env var or server config targeted 32843."
+    ],
+    "appType": "Full-Stack Node.js / React Application",
+    "containerPort": 5000,
+    "hostPort": 9657,
+    "error": "PORT_MISMATCH: Application expected to listen on port 5000, but process bound to port 32843.\nExpected: 5000\nActual: 32843\nContainer: forgeops-mern-ecommerce-dep-7232\nEnvironment PORT: 5000\nDocker Mapping: 9657 -> 5000\nRoot Cause: Application process listened on 32843 because PORT env var or server config targeted 32843.",
+    "duration": "8s"
+  },
+  {
+    "id": "dep-8518",
+    "serviceName": "frontend",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 5000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "8080",
+      "MONGO_URI": "mongodb://forgeops-mongo-dev:27017/merndb",
+      "UPSTASH_REDIS_REST_URL": "http://forgeops-redis-dev:6379",
+      "UPSTASH_REDIS_REST_TOKEN": "devtoken"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-30T06:33:08.518Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-30T06:33:08.518Z] Deployment queued for frontend on target local-docker",
+      "[2026-08-30T06:33:08.521Z] Step 1/8: Pre-flight target validation for target 'local-docker'...",
+      "[2026-08-30T06:33:08.735Z] ✓ Pre-flight check passed: Local Docker daemon is active and responsive.",
+      "[2026-08-30T06:33:08.736Z] Step 2/8: Cloning repository: https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T06:33:13.293Z] Repository cloned successfully. Commit SHA: abac06b",
+      "[2026-08-30T06:33:13.293Z] Step 3/8: Executing deep repository analysis...",
+      "[2026-08-30T06:33:13.297Z] Analysis complete: 79 files (4572 KB), JavaScript/TypeScript. Container listening port: 5000",
+      "[2026-08-30T06:33:13.298Z] Step 4/8: Building container image...",
+      "[2026-08-30T06:33:13.299Z] Initiating build process for frontend (Frontend Application (React/Web))...",
+      "[2026-08-30T06:33:13.299Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-8518/Dockerfile.",
+      "[2026-08-30T06:33:13.300Z] Executing 'docker build -t forgeops/frontend:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-8518\"'...",
+      "[2026-08-30T06:33:13.391Z] Docker build complete for forgeops/frontend:abac06b.",
+      "[2026-08-30T06:33:13.392Z] Step 5/8: Deploying workload strictly to target 'local-docker'...",
+      "[2026-08-30T06:33:13.946Z] MongoDB dependency detected. Ensuring local development MongoDB container 'forgeops-mongo-dev' is active...",
+      "[2026-08-30T06:34:24.552Z] Redis dependency detected. Ensuring local development Redis container 'forgeops-redis-dev' is active...",
+      "[2026-08-30T06:34:32.890Z] LOCAL_DOCKER mode active. Starting container 'forgeops-frontend-dep-8518' (Host port 8560 -> Container port 5000)...",
+      "[2026-08-30T06:34:33.474Z] Container created. ID: 5b0f01a74752",
+      "[2026-08-30T06:34:33.504Z] Workload container 'forgeops-frontend-dep-8518' active on http://localhost:8560",
+      "[2026-08-30T06:34:33.505Z] Step 6/8: Verifying application health probe at GET http://localhost:8560/...",
+      "[2026-08-30T06:34:33.505Z] Health probe attempt 1/6: GET http://localhost:8560/...",
+      "[2026-08-30T06:34:35.557Z] Health probe attempt 2/6: GET http://localhost:8560/...",
+      "[2026-08-30T06:34:37.579Z] Health probe attempt 3/6: GET http://localhost:8560/...",
+      "[2026-08-30T06:34:39.597Z] Health probe attempt 4/6: GET http://localhost:8560/...",
+      "[2026-08-30T06:34:41.630Z] Health probe attempt 5/6: GET http://localhost:8560/...",
+      "[2026-08-30T06:34:43.650Z] Health probe attempt 6/6: GET http://localhost:8560/...",
+      "\n======================================================\nCONTAINER HEALTH CHECK FAILURE DIAGNOSTICS REPORT\n======================================================\nContainer: forgeops-frontend-dep-8518\nTarget URL: http://localhost:8560/\nMapped Host Port: 8560 -> Container Port: 5000\n\n[1] CONTAINER STATUS:\n- Running: true\n- ExitCode: 0\n- Error: None\n\n[2] DOCKER MAPPED PORTS:\n5000/tcp -> 0.0.0.0:8560\n5000/tcp -> [::]:8560\n\n[3] CONTAINER INTERNAL LISTENING PORTS:\nActive Internet connections (only servers)\nProto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    \ntcp        0      0 127.0.0.11:34357        0.0.0.0:*               LISTEN      -\ntcp        0      0 :::8080                 :::*                    LISTEN      18/node\n\n[4] RECENT CONTAINER LOGS:\nNo logs recorded\n\n[5] ROOT CAUSE & RECOMMENDATION:\n- Ensure application inside container binds to 0.0.0.0 (not 127.0.0.1).\n- Verify container listening port matches mapped container port (5000).\n======================================================\n",
+      "[2026-08-30T06:34:46.139Z] DEPLOYMENT FAILED: HEALTH_CHECK_FAILED: HTTP probe to http://localhost:8560/ failed after 6 attempts (Command failed: curl -s -o /dev/null -w \"%{http_code}\" --max-time 4 \"http://localhost:8560/\"\n)."
+    ],
+    "appType": "Frontend Application (React/Web)",
+    "containerId": "forgeops-frontend-dep-8518",
+    "hostPort": 8560,
+    "containerPort": 5000,
+    "endpoint": "http://localhost:8560",
+    "error": "HEALTH_CHECK_FAILED: HTTP probe to http://localhost:8560/ failed after 6 attempts (Command failed: curl -s -o /dev/null -w \"%{http_code}\" --max-time 4 \"http://localhost:8560/\"\n).",
+    "duration": "98s"
+  },
+  {
+    "id": "dep-2402",
+    "serviceName": "frontend",
+    "repoUrl": "https://github.com/rajpatel10124/mern-ecommerce",
+    "environment": "development",
+    "target": "local-docker",
+    "owner": "team-backend",
+    "namespace": "default",
+    "replicas": 1,
+    "cpuRequest": "100m",
+    "memoryRequest": "128Mi",
+    "port": 80,
+    "targetPort": 3000,
+    "healthEndpoint": "/",
+    "envVars": {
+      "NODE_ENV": "production",
+      "PORT": "8080"
+    },
+    "secrets": {
+      "DATABASE_URL": "postgresql://dbuser:secret@localhost:5432/mydb"
+    },
+    "status": "FAILED",
+    "createdAt": "2026-08-30T06:28:52.403Z",
+    "commitSha": "abac06b",
+    "logs": [
+      "[2026-08-30T06:28:52.403Z] Deployment queued for frontend on target local-docker",
+      "[2026-08-30T06:28:52.406Z] Step 1/8: Pre-flight target validation for target 'local-docker'...",
+      "[2026-08-30T06:28:56.072Z] ✓ Pre-flight check passed: Local Docker daemon is active and responsive.",
+      "[2026-08-30T06:28:56.072Z] Step 2/8: Cloning repository: https://github.com/rajpatel10124/mern-ecommerce...",
+      "[2026-08-30T06:28:59.390Z] Repository cloned successfully. Commit SHA: abac06b",
+      "[2026-08-30T06:28:59.391Z] Step 3/8: Executing deep repository analysis...",
+      "[2026-08-30T06:28:59.395Z] Analysis complete: 79 files (4572 KB), JavaScript/TypeScript. Target container port: 3000",
+      "[2026-08-30T06:28:59.395Z] Step 4/8: Building container image...",
+      "[2026-08-30T06:28:59.396Z] Initiating build process for frontend (Frontend Application (React/Web))...",
+      "[2026-08-30T06:28:59.397Z] Existing Dockerfile detected at /home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-2402/Dockerfile.",
+      "[2026-08-30T06:28:59.397Z] Executing 'docker build -t forgeops/frontend:abac06b \"/home/snr/D-Drive/sem-7/cp/idp/app/tmp/deployments/dep-2402\"'...",
+      "[2026-08-30T06:29:00.248Z] Docker build complete for forgeops/frontend:abac06b.",
+      "[2026-08-30T06:29:00.248Z] Step 5/8: Deploying workload strictly to target 'local-docker'...",
+      "[2026-08-30T06:29:00.248Z] LOCAL_DOCKER mode active. Starting container 'forgeops-frontend-dep-2402' (Host port 9166 -> Container port 3000)...",
+      "[2026-08-30T06:29:04.373Z] Container created. ID: 35833dc42aba",
+      "[2026-08-30T06:29:04.407Z] Workload container 'forgeops-frontend-dep-2402' active on http://localhost:9166",
+      "[2026-08-30T06:29:04.407Z] Step 6/8: Verifying application health probe at GET http://localhost:9166/...",
+      "[2026-08-30T06:29:04.408Z] Health probe attempt 1/5: GET http://localhost:9166/...",
+      "[2026-08-30T06:29:06.453Z] Health probe attempt 2/5: GET http://localhost:9166/...",
+      "[2026-08-30T06:29:08.474Z] Health probe attempt 3/5: GET http://localhost:9166/...",
+      "[2026-08-30T06:29:10.493Z] Health probe attempt 4/5: GET http://localhost:9166/...",
+      "[2026-08-30T06:29:12.515Z] Health probe attempt 5/5: GET http://localhost:9166/...",
+      "[2026-08-30T06:29:14.536Z] DEPLOYMENT FAILED: HEALTH_CHECK_FAILED: HTTP probe to http://localhost:9166/ failed after 5 attempts. Error: Command failed: curl -s -o /dev/null -w \"%{http_code}\" --max-time 3 \"http://localhost:9166/\"\n"
+    ],
+    "appType": "Frontend Application (React/Web)",
+    "containerId": "forgeops-frontend-dep-2402",
+    "hostPort": 9166,
+    "containerPort": 3000,
+    "endpoint": "http://localhost:9166",
+    "error": "HEALTH_CHECK_FAILED: HTTP probe to http://localhost:9166/ failed after 5 attempts. Error: Command failed: curl -s -o /dev/null -w \"%{http_code}\" --max-time 3 \"http://localhost:9166/\"\n",
+    "duration": "22s"
+  },
+  {
+    "id": "dep-905",
+    "serviceName": "supportive-sailers",
+    "repoUrl": "https://github.com/rajpatel10124/Supportivesailers",
+    "environment": "production",
+    "status": "SUCCESS",
+    "target": "local-docker",
+    "createdAt": "2026-08-30T10:45:00.000Z",
+    "commitSha": "b3e9a11",
+    "owner": "team-logistics",
+    "duration": "38s",
+    "appType": "Node.js Application",
+    "endpoint": "http://localhost:8082",
+    "logs": [
+      "[2026-08-30T10:45:00.000Z] Step 1/8: Pre-flight validation & target check...",
+      "[2026-08-30T10:45:01.000Z] Step 2/8: Cloning repository: https://github.com/rajpatel10124/Supportivesailers...",
+      "[2026-08-30T10:45:05.000Z] Repository cloned successfully (Public Tokenless Mode). Commit SHA: b3e9a11",
+      "[2026-08-30T10:45:06.000Z] Step 3/8: Executing deep repository analysis...",
+      "[2026-08-30T10:45:08.000Z] Analysis complete: Node.js React application detected",
+      "[2026-08-30T10:45:10.000Z] Step 4/8: Building container image forgeops/supportive-sailers:b3e9a11...",
+      "[2026-08-30T10:45:28.000Z] Container image built successfully",
+      "[2026-08-30T10:45:30.000Z] Step 5/8: Deploying workload container...",
+      "[2026-08-30T10:45:32.000Z] Workload container 'forgeops-supportive-sailers-dep-905' active on http://localhost:8082",
+      "[2026-08-30T10:45:35.000Z] Step 6/8: Verifying health probe... (200 OK)",
+      "[2026-08-30T10:45:36.000Z] Step 7/8: Registered in Backstage Software Catalog",
+      "[2026-08-30T10:45:38.000Z] Step 8/8: Deployment completed successfully! Endpoint: http://localhost:8082"
+    ]
+  },
+  {
+    "id": "dep-904",
+    "serviceName": "forgeops-orders-api",
+    "repoUrl": "https://github.com/octocat/Spoon-Knife.git",
+    "environment": "production",
+    "status": "SUCCESS",
+    "target": "local-docker",
+    "createdAt": "2026-08-30T09:30:00.000Z",
+    "commitSha": "a8f3b1c",
+    "owner": "team-backend",
+    "duration": "42s",
+    "appType": "Static Website",
+    "endpoint": "http://localhost:8080",
+    "logs": [
+      "[2026-08-30T09:30:00.000Z] Starting public Git clone for https://github.com/octocat/Spoon-Knife.git...",
+      "[2026-08-30T09:30:02.000Z] Repository cloned successfully. Commit SHA: a8f3b1c",
+      "[2026-08-30T09:30:03.000Z] Detected type: Static Website (HTML/CSS/JS static website)",
+      "[2026-08-30T09:30:05.000Z] Generated Nginx Dockerfile for static website.",
+      "[2026-08-30T09:30:15.000Z] Docker image built successfully: forgeops/forgeops-orders-api:a8f3b1c",
+      "[2026-08-30T09:30:18.000Z] Deployment completed successfully. Active endpoint: http://localhost:8080"
+    ]
+  },
+  {
+    "id": "dep-903",
+    "serviceName": "forgeops-worker-001",
+    "repoUrl": "https://github.com/octocat/Spoon-Knife.git",
+    "environment": "development",
+    "status": "SUCCESS",
+    "target": "local-docker",
+    "createdAt": "2026-08-30T09:15:00.000Z",
+    "commitSha": "f72c91d",
+    "owner": "team-backend",
+    "duration": "1m 10s",
+    "appType": "Node.js Application",
+    "endpoint": "http://localhost:8081",
+    "logs": [
+      "[2026-08-30T09:15:00.000Z] Starting public Git clone for https://github.com/octocat/Spoon-Knife.git...",
+      "[2026-08-30T09:15:02.000Z] Repository cloned successfully. Commit SHA: f72c91d",
+      "[2026-08-30T09:15:03.000Z] Detected type: Node.js Application (Node.js microservice / web app)",
+      "[2026-08-30T09:15:15.000Z] Deployment completed successfully. Active endpoint: http://localhost:8081"
+    ]
+  }
+]

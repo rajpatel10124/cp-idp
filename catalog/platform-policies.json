@@ -1,0 +1,54 @@
+[
+  {
+    "id": "pol-1",
+    "name": "Require Resource Limits",
+    "description": "Requires container specs to define CPU and Memory requests and limits.",
+    "engine": "OPA",
+    "scope": "Kubernetes Workloads",
+    "attachment": "production",
+    "rule": "cpuRequest && memoryRequest required; cpu >= 100m, memory >= 128Mi",
+    "status": "ACTIVE",
+    "createdBy": "admin",
+    "createdAt": "2026-08-30T09:00:00.000Z",
+    "updatedAt": "2026-08-30T09:00:00.000Z"
+  },
+  {
+    "id": "pol-2",
+    "name": "No Privileged Containers",
+    "description": "Blocks containers configured with root execution or securityContext.privileged = true.",
+    "engine": "Kyverno",
+    "scope": "EKS Clusters",
+    "attachment": "Global",
+    "rule": "securityContext.privileged !== true",
+    "status": "ACTIVE",
+    "createdBy": "admin",
+    "createdAt": "2026-08-30T09:00:00.000Z",
+    "updatedAt": "2026-08-30T09:00:00.000Z"
+  },
+  {
+    "id": "pol-3",
+    "name": "Approved Container Registry",
+    "description": "Restricts container deployment images to approved registries (ECR, DockerHub, Local).",
+    "engine": "OPA",
+    "scope": "Container Images",
+    "attachment": "Global",
+    "rule": "imageRegistry in ['ECR', 'DockerHub', 'Local']",
+    "status": "ACTIVE",
+    "createdBy": "admin",
+    "createdAt": "2026-08-30T09:00:00.000Z",
+    "updatedAt": "2026-08-30T09:00:00.000Z"
+  },
+  {
+    "id": "pol-4",
+    "name": "Mandatory Service Owner",
+    "description": "Requires all catalog services and workloads to possess an owner starting with team-.",
+    "engine": "Catalog Guard",
+    "scope": "Backstage Catalog",
+    "attachment": "Global",
+    "rule": "owner.startsWith('team-')",
+    "status": "ACTIVE",
+    "createdBy": "admin",
+    "createdAt": "2026-08-30T09:00:00.000Z",
+    "updatedAt": "2026-08-30T09:00:00.000Z"
+  }
+]

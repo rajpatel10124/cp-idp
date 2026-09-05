@@ -1,0 +1,105 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: create-worker-service
+  title: Create Worker Service
+  description: Scaffolds an asynchronous background job processing worker with event loop execution, health server, Docker containerization, Kubernetes Deployment, and GitHub Actions CI/CD.
+  tags:
+    - nodejs
+    - worker
+    - queue-consumer
+    - background-job
+    - golden-path
+spec:
+  owner: team-platform
+  type: service
+
+  parameters:
+    - title: Worker Configuration
+      required:
+        - component_id
+        - description
+        - owner
+        - concurrency
+      properties:
+        component_id:
+          title: Worker Name
+          type: string
+          description: Name of the worker microservice (e.g. notification-worker, analytics-etl)
+          ui:autofocus: true
+          pattern: '^[a-z0-9-]+$'
+        description:
+          title: Description
+          type: string
+          description: Purpose of this worker service.
+        owner:
+          title: Owner Team
+          type: string
+          ui:field: OwnerPicker
+          ui:options:
+            allowedKinds:
+              - Group
+        environment:
+          title: Deployment Environment
+          type: string
+          default: dev
+          enum:
+            - dev
+            - staging
+            - prod
+        concurrency:
+          title: Worker Concurrency
+          type: integer
+          default: 5
+          description: Max parallel task execution threads.
+
+    - title: Git Repository Location
+      required:
+        - repoUrl
+      properties:
+        repoUrl:
+          title: Repository Location
+          type: string
+          ui:field: RepoUrlPicker
+          ui:options:
+            allowedHosts:
+              - github.com
+
+  steps:
+    - id: fetch-skeleton
+      name: Fetch Worker Service Skeleton
+      action: fetch:template
+      input:
+        url: ./skeleton
+        values:
+          component_id: ${{ steps['fetch-skeleton'].output.values.component_id || parameters.component_id }}
+          description: ${{ parameters.description }}
+          owner: ${{ parameters.owner }}
+          environment: ${{ parameters.environment }}
+          concurrency: ${{ parameters.concurrency }}
+          destination: ${{ parameters.repoUrl | parseRepoUrl }}
+
+    - id: publish-github
+      name: Create GitHub Repository & Push Code
+      action: publish:github
+      input:
+        allowedHosts: ['github.com']
+        description: ${{ parameters.description }}
+        repoUrl: ${{ parameters.repoUrl }}
+        defaultBranch: main
+        access: public
+
+    - id: register-catalog
+      name: Register Component in Backstage Catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: ${{ steps['publish-github'].output.repoContentsUrl }}
+        catalogInfoPath: '/catalog-info.yaml'
+
+  output:
+    links:
+      - title: GitHub Repository
+        url: ${{ steps['publish-github'].output.remoteUrl }}
+      - title: Backstage Software Catalog
+        icon: catalog
+        entityRef: ${{ steps['register-catalog'].output.entityRef }}

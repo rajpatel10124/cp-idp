@@ -1,0 +1,428 @@
+{
+  "forgeops-orders-api": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "forgeops-orders-api",
+      "title": "Order Processing REST API",
+      "description": "High-throughput checkout and order management microservice created via Golden Path",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "forgeops.io/created-via": "golden-path",
+        "forgeops.io/created-at": "2026-08-30T10:00:00.000Z"
+      },
+      "tags": [
+        "forgeops",
+        "golden-path",
+        "rest-api",
+        "production"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "production",
+      "owner": "team-backend",
+      "system": "ecommerce-system"
+    }
+  },
+  "forgeops-worker-001": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "forgeops-worker-001",
+      "title": "Async Event Worker Service",
+      "description": "Background consumer service processing payment and inventory events via Golden Path",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "forgeops.io/created-via": "golden-path",
+        "forgeops.io/created-at": "2026-08-30T10:15:00.000Z"
+      },
+      "tags": [
+        "forgeops",
+        "golden-path",
+        "worker",
+        "development"
+      ]
+    },
+    "spec": {
+      "type": "worker",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "ecommerce-system"
+    }
+  },
+  "supportive-sailers": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "supportive-sailers",
+      "title": "Supportive Sailers Logistics Web App",
+      "description": "Public GitHub logistics route optimization service deployed via tokenless public pipeline",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "forgeops.io/repo-url": "https://github.com/rajpatel10124/Supportivesailers",
+        "forgeops.io/endpoint": "http://localhost:8082",
+        "forgeops.io/created-via": "public-deployment"
+      },
+      "tags": [
+        "forgeops",
+        "public-repo",
+        "logistics",
+        "react"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "production",
+      "owner": "team-logistics",
+      "system": "supply-chain"
+    }
+  },
+  "mern-ecommerce": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "mern-ecommerce",
+      "title": "mern-ecommerce",
+      "description": "mern-ecommerce - Deployed to local-docker (LOCAL DOCKER)",
+      "annotations": {
+        "forgeops.io/repo-url": "https://github.com/rajpatel10124/mern-ecommerce",
+        "forgeops.io/endpoint": "http://localhost:8946",
+        "forgeops.io/app-type": "Full-Stack Node.js / React Application",
+        "forgeops.io/target": "local-docker",
+        "forgeops.io/adapter": "LOCAL DOCKER",
+        "forgeops.io/deployment-id": "dep-7953"
+      },
+      "tags": [
+        "forgeops",
+        "deployed",
+        "local-docker",
+        "local-docker"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "aaaaaa": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "aaaaaa",
+      "description": "aaaaaa - Created via ForgeOps Golden Path",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "forgeops.io/created-via": "golden-path",
+        "forgeops.io/created-at": "2026-08-30T08:27:36.684Z"
+      },
+      "tags": [
+        "forgeops",
+        "golden-path"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "python": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "python",
+      "description": "python - Created via ForgeOps Golden Path",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "forgeops.io/created-via": "golden-path",
+        "forgeops.io/created-at": "2026-08-30T12:18:52.656Z"
+      },
+      "tags": [
+        "forgeops",
+        "golden-path"
+      ]
+    },
+    "spec": {
+      "type": "worker",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "analysis-1788095324556": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "analysis-1788095324556",
+      "title": "analysis-1788095324556",
+      "description": "analysis-1788095324556 - Deployed to local-docker (LOCAL DOCKER)",
+      "annotations": {
+        "forgeops.io/repo-url": "https://github.com/rajpatel10124/SupportiveSailers",
+        "forgeops.io/endpoint": "http://localhost:8392",
+        "forgeops.io/app-type": "Generic Web Application",
+        "forgeops.io/target": "local-docker",
+        "forgeops.io/adapter": "LOCAL DOCKER",
+        "forgeops.io/deployment-id": "dep-1908"
+      },
+      "tags": [
+        "forgeops",
+        "deployed",
+        "local-docker",
+        "local-docker"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "sample": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "sample",
+      "description": "sample - Created via ForgeOps Golden Path",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "forgeops.io/created-via": "golden-path",
+        "forgeops.io/created-at": "2026-08-30T13:21:37.592Z"
+      },
+      "tags": [
+        "forgeops",
+        "golden-path"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "analysis-1788194110839": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "analysis-1788194110839",
+      "title": "analysis-1788194110839",
+      "description": "analysis-1788194110839 - Deployed to local-docker (LOCAL DOCKER)",
+      "annotations": {
+        "forgeops.io/repo-url": "https://github.com/rajpatel10124/supportivesailers",
+        "forgeops.io/endpoint": "http://localhost:8130",
+        "forgeops.io/app-type": "Generic Web Application",
+        "forgeops.io/target": "local-docker",
+        "forgeops.io/adapter": "LOCAL DOCKER",
+        "forgeops.io/deployment-id": "dep-8868"
+      },
+      "tags": [
+        "forgeops",
+        "deployed",
+        "local-docker",
+        "local-docker"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "analysis-1788243043596": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "analysis-1788243043596",
+      "title": "analysis-1788243043596",
+      "description": "analysis-1788243043596 - Deployed to local-docker (LOCAL DOCKER)",
+      "annotations": {
+        "forgeops.io/repo-url": "https://github.com/rajpatel10124/supportivesailers",
+        "forgeops.io/endpoint": "http://localhost:8211",
+        "forgeops.io/app-type": "Generic Web Application",
+        "forgeops.io/target": "local-docker",
+        "forgeops.io/adapter": "LOCAL DOCKER",
+        "forgeops.io/deployment-id": "dep-5348"
+      },
+      "tags": [
+        "forgeops",
+        "deployed",
+        "local-docker",
+        "local-docker"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "demo": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "demo",
+      "description": "demo - Created via ForgeOps Golden Path",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "github.com/project-slug": "rajpatel10124/sample",
+        "forgeops.io/created-via": "golden-path",
+        "forgeops.io/created-at": "2026-09-01T06:56:27.977Z"
+      },
+      "tags": [
+        "forgeops",
+        "golden-path",
+        "worker-service",
+        "development"
+      ]
+    },
+    "spec": {
+      "type": "worker",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "service-payment": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "service-payment",
+      "description": "service-payment - Created via ForgeOps Golden Path",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "github.com/project-slug": "rajpatel10124/cp-project-demo",
+        "forgeops.io/created-via": "golden-path",
+        "forgeops.io/created-at": "2026-09-01T11:16:12.008Z"
+      },
+      "tags": [
+        "forgeops",
+        "golden-path",
+        "worker-service",
+        "development"
+      ]
+    },
+    "spec": {
+      "type": "worker",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "try-sample": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "try-sample",
+      "description": "try-sample - Created via ForgeOps Golden Path",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "github.com/project-slug": "rajpatel10124/try-sample",
+        "forgeops.io/created-via": "golden-path",
+        "forgeops.io/created-at": "2026-09-01T11:29:11.033Z"
+      },
+      "tags": [
+        "forgeops",
+        "golden-path",
+        "worker-service",
+        "development"
+      ]
+    },
+    "spec": {
+      "type": "worker",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "new-sample": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "new-sample",
+      "description": "new-sample - Created via ForgeOps Golden Path",
+      "annotations": {
+        "backstage.io/techdocs-ref": "dir:.",
+        "github.com/project-slug": "rajpatel10124/new-sample",
+        "forgeops.io/created-via": "golden-path",
+        "forgeops.io/created-at": "2026-09-01T11:38:45.914Z"
+      },
+      "tags": [
+        "forgeops",
+        "golden-path",
+        "worker-service",
+        "development"
+      ]
+    },
+    "spec": {
+      "type": "worker",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "analysis-1788262768872": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "analysis-1788262768872",
+      "title": "analysis-1788262768872",
+      "description": "analysis-1788262768872 - Deployed to local-docker (LOCAL DOCKER)",
+      "annotations": {
+        "forgeops.io/repo-url": "https://github.com/rajpatel10124/SupportiveSailers",
+        "forgeops.io/endpoint": "http://localhost:8761",
+        "forgeops.io/app-type": "Generic Web Application",
+        "forgeops.io/target": "local-docker",
+        "forgeops.io/adapter": "LOCAL DOCKER",
+        "forgeops.io/deployment-id": "dep-9216"
+      },
+      "tags": [
+        "forgeops",
+        "deployed",
+        "local-docker",
+        "local-docker"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  },
+  "analysis-1788272632245": {
+    "apiVersion": "backstage.io/v1alpha1",
+    "kind": "Component",
+    "metadata": {
+      "name": "analysis-1788272632245",
+      "title": "analysis-1788272632245",
+      "description": "analysis-1788272632245 - Deployed to local-docker (LOCAL DOCKER)",
+      "annotations": {
+        "forgeops.io/repo-url": "https://github.com/rajpatel10124/SupportiveSailers",
+        "forgeops.io/endpoint": "http://localhost:9524",
+        "forgeops.io/app-type": "Generic Web Application",
+        "forgeops.io/target": "local-docker",
+        "forgeops.io/adapter": "LOCAL DOCKER",
+        "forgeops.io/deployment-id": "dep-3211"
+      },
+      "tags": [
+        "forgeops",
+        "deployed",
+        "local-docker",
+        "local-docker"
+      ]
+    },
+    "spec": {
+      "type": "service",
+      "lifecycle": "development",
+      "owner": "team-backend",
+      "system": "default"
+    }
+  }
+}

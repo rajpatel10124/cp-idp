@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${{ values.component_id }}
+  namespace: ${{ values.environment }}
+  labels:
+    app.kubernetes.io/name: ${{ values.component_id }}
+    app.kubernetes.io/component: worker
+    app.kubernetes.io/part-of: ecommerce-system
+    owner: ${{ values.owner }}
+    environment: ${{ values.environment }}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ${{ values.component_id }}
+  template:
+    metadata:
+      labels:
+        app: ${{ values.component_id }}
+        owner: ${{ values.owner }}
+        environment: ${{ values.environment }}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        prometheus.io/path: "/metrics"
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: ${{ values.component_id }}
+          image: ${{ values.destination.owner }}/${{ values.component_id }}:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 9090
+              name: metrics
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 300m
+              memory: 512Mi
+          env:
+            - name: NODE_ENV
+              value: ${{ values.environment }}
+            - name: WORKER_CONCURRENCY
+              value: "${{ values.concurrency }}"
+            - name: HEALTH_PORT
+              value: "9090"
+          livenessProbe:
+            httpGet:
+              path: /livez
+              port: 9090
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 9090
+            initialDelaySeconds: 5
+            periodSeconds: 5

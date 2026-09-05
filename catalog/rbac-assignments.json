@@ -1,0 +1,23 @@
+[
+  {
+    "id": "asgn-3",
+    "principal": "team-backend",
+    "principalType": "group",
+    "roleId": "DEVELOPER",
+    "createdAt": "2026-08-30T10:00:00.000Z"
+  },
+  {
+    "id": "asgn-4",
+    "principal": "team-platform",
+    "principalType": "group",
+    "roleId": "PLATFORM_ENGINEER",
+    "createdAt": "2026-08-30T10:00:00.000Z"
+  },
+  {
+    "id": "asgn-5",
+    "principal": "developers",
+    "principalType": "group",
+    "roleId": "DEVELOPER",
+    "createdAt": "2026-08-30T10:00:00.000Z"
+  }
+]

@@ -1,0 +1,39 @@
+replicaCount: 2
+
+image:
+  repository: 123456789012.dkr.ecr.us-east-1.amazonaws.com/idp-backstage-platform
+  pullPolicy: IfNotPresent
+  tag: "1.0.0"
+
+service:
+  type: ClusterIP
+  port: 7007
+  targetPort: 7007
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  hosts:
+    - host: idp.company.internal
+      paths:
+        - path: /
+          pathType: Prefix
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 512Mi
+  limits:
+    cpu: 1000m
+    memory: 1024Mi
+
+env:
+  NODE_ENV: "production"
+  APP_BASE_URL: "https://idp.company.internal"
+  BACKEND_BASE_URL: "https://idp.company.internal"
+
+secrets:
+  GITHUB_TOKEN: "ghp_EXAMPLE_TOKEN_CHANGE_ME"
+  POSTGRES_PASSWORD: "SecureDBPassword123!"

@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: ${{ values.component_id }}
+  description: ${{ values.description }}
+  tags:
+    - nodejs
+    - rest-api
+    - golden-path
+    - ${{ values.environment }}
+  annotations:
+    backstage.io/techdocs-ref: dir:.
+    prometheus.io/scrape: "true"
+    prometheus.io/path: "/metrics"
+    prometheus.io/port: "${{ values.port }}"
+    github.com/project-slug: ${{ values.destination.owner }}/${{ values.destination.repo }}
+spec:
+  type: service
+  lifecycle: ${{ values.environment }}
+  owner: ${{ values.owner }}
+  system: ecommerce-system

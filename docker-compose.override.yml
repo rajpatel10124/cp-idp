@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  # OPA Policy Engine — Task 1
+  opa:
+    image: openpolicyagent/opa:latest-rootless
+    command: run --server --log-level info /policies
+    volumes:
+      - ./app/backstage/policies:/policies:ro
+    ports:
+      - "8181:8181"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:8181/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Grafana Dashboard Auto-Provisioning — Task 3
+  forgeops-observability-v2-grafana:
+    volumes:
+      - ./grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./grafana/dashboards:/var/lib/grafana/dashboards:ro
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Viewer
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/forgeops-main.json

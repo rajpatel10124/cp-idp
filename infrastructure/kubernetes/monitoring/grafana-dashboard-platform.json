@@ -1,0 +1,49 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "title": "Total Active Kubernetes Pods",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 0 },
+      "targets": [
+        { "expr": "count(kube_pod_info{namespace=~\"dev|prod|idp-system\"})", "refId": "A" }
+      ]
+    },
+    {
+      "title": "Platform Node CPU Utilization (%)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 6, "y": 0 },
+      "targets": [
+        { "expr": "100 - (avg(rate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)", "refId": "A" }
+      ]
+    },
+    {
+      "title": "Backstage IDP Backend Availability",
+      "type": "stat",
+      "gridPos": { "h": 4, "w": 6, "x": 0, "y": 4 },
+      "targets": [
+        { "expr": "up{job=\"backstage-idp\"}", "refId": "A" }
+      ]
+    },
+    {
+      "title": "Cluster Memory Consumption (Bytes)",
+      "type": "timeseries",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "targets": [
+        { "expr": "sum(container_memory_working_set_bytes{container!=\"\"}) by (namespace)", "refId": "A" }
+      ]
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": ["idp", "kubernetes", "platform"],
+  "time": { "from": "now-1h", "to": "now" },
+  "title": "IDP Platform Infrastructure Health"
+}

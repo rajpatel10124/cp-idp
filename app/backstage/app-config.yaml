@@ -1,0 +1,76 @@
+app:
+  title: Internal Developer Platform (IDP)
+  baseUrl: http://localhost:3000
+  organization:
+    name: Platform Engineering Capstone
+
+organization:
+  name: Platform Engineering Capstone
+
+backend:
+  # Used for target URLs of links to the backend, e.g. ./api/scaffolder
+  baseUrl: http://localhost:7007
+  listen:
+    port: 7007
+    # host: 0.0.0.0
+  cors:
+    origin: http://localhost:3000
+    methods: [GET, HEAD, PATCH, POST, PUT, DELETE]
+    credentials: true
+  database:
+    client: better-sqlite3
+    connection: ':memory:'
+  cache:
+    store: memory
+
+permission:
+  enabled: false
+
+auth:
+  environment: development
+  providers:
+    guest:
+      dangerouslyAllowGuestAuthInDevelopment: true
+    github:
+      development:
+        clientId: ${GITHUB_CLIENT_ID}
+        clientSecret: ${GITHUB_CLIENT_SECRET}
+
+scaffolder:
+  defaultAuthor:
+    name: IDP Platform Bot
+    email: idp-bot@company.internal
+  defaultCommitMessage: "chore: scaffolded application via Backstage Golden Path"
+
+integrations:
+  github:
+    - host: github.com
+      token: ${GITHUB_TOKEN}
+
+techdocs:
+  builder: 'local'
+  generator:
+    runIn: 'local'
+  publisher:
+    type: 'local'
+
+catalog:
+  import:
+    entityFilename: catalog-info.yaml
+    pullRequestBranchName: backstage-integration
+  rules:
+    - allow: [Component, System, API, Resource, Location, Template, User, Group]
+  locations:
+    # Organization Groups & Users
+    - type: file
+      target: ../../catalog/org-users.yaml
+
+    # Sample Components & Systems
+    - type: file
+      target: ../../catalog/all-components.yaml
+
+    # Golden Path Templates
+    - type: file
+      target: ../../templates/rest-api/template.yaml
+    - type: file
+      target: ../../templates/worker-service/template.yaml

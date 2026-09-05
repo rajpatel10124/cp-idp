@@ -1,0 +1,21 @@
+[
+  {
+    "id": "aws-dev",
+    "name": "AWS Development",
+    "type": "aws",
+    "environment": "development",
+    "accountId": "123456789012",
+    "region": "us-east-1",
+    "roleArn": "arn:aws:iam::123456789012:role/ForgeOpsGitHubActionsRole",
+    "status": "CONNECTED",
+    "updatedAt": "2026-09-01T12:08:00.848Z"
+  },
+  {
+    "id": "github-default",
+    "name": "GitHub Integration",
+    "type": "github",
+    "environment": "all",
+    "status": "CONNECTED",
+    "updatedAt": "2026-09-01T12:08:00.848Z"
+  }
+]

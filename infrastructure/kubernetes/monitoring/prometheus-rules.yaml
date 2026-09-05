@@ -1,0 +1,62 @@
+# ==============================================================================
+# Prometheus Operator ServiceMonitor & Alerting Rules for IDP Platform
+# ==============================================================================
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: idp-services-monitor
+  namespace: idp-system
+  labels:
+    release: prometheus-stack
+spec:
+  selector:
+    matchExpressions:
+      - { key: app, operator: Exists }
+  namespaceSelector:
+    any: true
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s
+    - port: metrics
+      path: /metrics
+      interval: 15s
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: idp-alerting-rules
+  namespace: idp-system
+  labels:
+    role: alert-rules
+spec:
+  groups:
+    - name: idp-platform-alerts
+      rules:
+        - alert: HighPodCpuUsage
+          expr: sum(rate(container_cpu_usage_seconds_total{container!=""}[5m])) by (pod, namespace) > 0.8
+          for: 5m
+          labels:
+            severity: warning
+          annotations:
+            summary: "High CPU usage on pod {{ $labels.pod }}"
+            description: "Pod CPU utilization has exceeded 80% for 5 minutes."
+
+        - alert: HighPodMemoryUsage
+          expr: container_memory_working_set_bytes{container!=""} / container_spec_memory_limit_bytes{container!=""} > 0.85
+          for: 3m
+          labels:
+            severity: critical
+          annotations:
+            summary: "Pod memory near limit on {{ $labels.pod }}"
+            description: "Memory working set is above 85% of limit."
+
+        - alert: MicroserviceHighErrorRate
+          expr: sum(rate(http_request_duration_seconds_count{code=~"5.."}[5m])) / sum(rate(http_request_duration_seconds_count[5m])) > 0.05
+          for: 2m
+          labels:
+            severity: critical
+          annotations:
+            summary: "High HTTP 5xx error rate detected"
+            description: "HTTP 5xx responses exceed 5% of total traffic."

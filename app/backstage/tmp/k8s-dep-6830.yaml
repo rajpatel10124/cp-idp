@@ -1,0 +1,83 @@
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: static-site-secrets
+  namespace: default
+  labels:
+    forgeops.io/managed: "true"
+    forgeops.io/service-id: "static-site"
+    forgeops.io/deployment-id: "dep-6830"
+type: Opaque
+data:
+  DATABASE_URL: "cG9zdGdyZXNxbDovL2RidXNlcjpzZWNyZXRAbG9jYWxob3N0OjU0MzIvbXlkYg=="
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static-site
+  namespace: default
+  labels:
+    app: static-site
+    forgeops.io/managed: "true"
+    forgeops.io/service-id: "static-site"
+    forgeops.io/deployment-id: "dep-6830"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: static-site
+  template:
+    metadata:
+      labels:
+        app: static-site
+        forgeops.io/managed: "true"
+        forgeops.io/deployment-id: "dep-6830"
+    spec:
+      containers:
+      - name: static-site
+        image: forgeops/static-site:64ecd27
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "8080"
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: static-site-secrets
+              key: DATABASE_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: static-site
+  namespace: default
+  labels:
+    app: static-site
+    forgeops.io/managed: "true"
+    forgeops.io/service-id: "static-site"
+    forgeops.io/deployment-id: "dep-6830"
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: static-site

@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${{ values.component_id }}
+  namespace: ${{ values.environment }}
+  labels:
+    app.kubernetes.io/name: ${{ values.component_id }}
+    app.kubernetes.io/part-of: ecommerce-system
+    app.kubernetes.io/managed-by: backstage-idp
+    owner: ${{ values.owner }}
+    environment: ${{ values.environment }}
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ${{ values.component_id }}
+  template:
+    metadata:
+      labels:
+        app: ${{ values.component_id }}
+        owner: ${{ values.owner }}
+        environment: ${{ values.environment }}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "${{ values.port }}"
+        prometheus.io/path: "/metrics"
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: ${{ values.component_id }}
+          image: ${{ values.destination.owner }}/${{ values.component_id }}:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: ${{ values.port }}
+              name: http
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 250m
+              memory: 256Mi
+          env:
+            - name: NODE_ENV
+              value: ${{ values.environment }}
+            - name: PORT
+              value: "${{ values.port }}"
+          livenessProbe:
+            httpGet:
+              path: /livez
+              port: ${{ values.port }}
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: ${{ values.port }}
+            initialDelaySeconds: 5
+            periodSeconds: 5

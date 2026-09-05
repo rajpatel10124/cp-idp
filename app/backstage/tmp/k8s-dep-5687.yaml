@@ -1,0 +1,83 @@
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: frontend-secrets
+  namespace: default
+  labels:
+    forgeops.io/managed: "true"
+    forgeops.io/service-id: "frontend"
+    forgeops.io/deployment-id: "dep-5687"
+type: Opaque
+data:
+  DATABASE_URL: "cG9zdGdyZXNxbDovL2RidXNlcjpzZWNyZXRAbG9jYWxob3N0OjU0MzIvbXlkYg=="
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  namespace: default
+  labels:
+    app: frontend
+    forgeops.io/managed: "true"
+    forgeops.io/service-id: "frontend"
+    forgeops.io/deployment-id: "dep-5687"
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+        forgeops.io/managed: "true"
+        forgeops.io/deployment-id: "dep-5687"
+    spec:
+      containers:
+      - name: frontend
+        image: forgeops/frontend:abac06b
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "128Mi"
+          limits:
+            cpu: "500m"
+            memory: "512Mi"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        env:
+        - name: NODE_ENV
+          value: "production"
+        - name: PORT
+          value: "8080"
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: frontend-secrets
+              key: DATABASE_URL
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: default
+  labels:
+    app: frontend
+    forgeops.io/managed: "true"
+    forgeops.io/service-id: "frontend"
+    forgeops.io/deployment-id: "dep-5687"
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: frontend
