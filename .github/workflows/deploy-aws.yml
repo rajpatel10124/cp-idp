@@ -1,0 +1,192 @@
+name: Deploy ForgeOps IDP to AWS (EKS + ALB + ECR)
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'app/**'
+      - 'infra/**'
+      - 'k8s/**'
+      - '.github/workflows/deploy-aws.yml'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - dev
+          - prod
+
+permissions:
+  id-token: write   # Required for requesting short-lived AWS credentials via OIDC
+  contents: read    # Required for actions/checkout
+
+jobs:
+  deploy:
+    name: Deploy to Amazon EKS
+    runs-on: ubuntu-latest
+    env:
+      AWS_REGION: ${{ vars.AWS_REGION || 'us-east-1' }}
+      ENVIRONMENT: ${{ inputs.environment || 'dev' }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Engine
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: '1.7.3'
+
+      - name: Setup Kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'v1.28.2'
+
+      # Authenticate to AWS via Passwordless OIDC
+      - name: Configure AWS Credentials via GitHub OIDC
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_OIDC_ROLE_ARN || vars.AWS_OIDC_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+          audience: sts.amazonaws.com
+
+      - name: Verify AWS Identity
+        run: |
+          aws sts get-caller-identity
+
+      - name: Log in to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      # Build and push immutable image tagged with Git commit SHA
+      - name: Build and Push ForgeOps Image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: sha-${{ github.sha }}
+        run: |
+          ECR_REPO="${ECR_REGISTRY}/forgeops"
+          echo "Building image ${ECR_REPO}:${IMAGE_TAG}..."
+          docker build -t "${ECR_REPO}:${IMAGE_TAG}" -t "${ECR_REPO}:latest" ./app/backstage
+          echo "Pushing images to Amazon ECR..."
+          docker push "${ECR_REPO}:${IMAGE_TAG}"
+          docker push "${ECR_REPO}:latest"
+          echo "FORGEOPS_IMAGE=${ECR_REPO}:${IMAGE_TAG}" >> $GITHUB_ENV
+
+      # Run Terraform to provision / update AWS Infrastructure
+      - name: Terraform Init & Apply
+        id: terraform
+        run: |
+          cd infra/terraform
+          if [ -n "${{ vars.TF_STATE_BUCKET }}" ]; then
+            terraform init \
+              -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}" \
+              -backend-config="key=forgeops/${{ env.ENVIRONMENT }}/terraform.tfstate" \
+              -backend-config="region=${{ env.AWS_REGION }}" \
+              -backend-config="dynamodb_table=${{ vars.TF_LOCKS_TABLE || 'forgeops-terraform-locks' }}" \
+              -reconfigure
+          else
+            terraform init -backend=false
+          fi
+
+          terraform validate
+          terraform plan -var-file="environments/${{ env.ENVIRONMENT }}.tfvars" -out="tfplan"
+          terraform apply -auto-approve "tfplan"
+
+          # Export outputs to GITHUB_ENV
+          echo "EKS_CLUSTER_NAME=$(terraform output -raw eks_cluster_name)" >> $GITHUB_ENV
+          echo "RDS_ENDPOINT=$(terraform output -raw rds_endpoint)" >> $GITHUB_ENV
+          echo "RDS_PORT=$(terraform output -raw rds_port)" >> $GITHUB_ENV
+          echo "RDS_DB_NAME=$(terraform output -raw rds_database_name)" >> $GITHUB_ENV
+          echo "TECHDOCS_BUCKET=$(terraform output -raw techdocs_s3_bucket)" >> $GITHUB_ENV
+          echo "ALB_ROLE_ARN=$(terraform output -raw aws_load_balancer_controller_role_arn)" >> $GITHUB_ENV
+
+      # Connect to Amazon EKS Cluster
+      - name: Update Kubeconfig
+        run: |
+          aws eks update-kubeconfig --name "${{ env.EKS_CLUSTER_NAME }}" --region "${{ env.AWS_REGION }}"
+          kubectl cluster-info
+
+      # Apply Observability Dashboard ConfigMap & Controller ServiceAccount
+      - name: Deploy Observability & Ingress Controller Configuration
+        run: |
+          kubectl create namespace forgeops --dry-run=client -o yaml | kubectl apply -f -
+          kubectl create namespace monitoring --dry-run=client -o yaml | kubectl apply -f -
+
+          if [ -f "k8s/observability/forgeops-dashboard-configmap.yaml" ]; then
+            kubectl apply -f k8s/observability/forgeops-dashboard-configmap.yaml
+          fi
+
+          if [ -n "${{ env.ALB_ROLE_ARN }}" ] && [ -f "k8s/aws-load-balancer-controller/serviceaccount.yaml" ]; then
+            sed "s|\${AWS_LOAD_BALANCER_CONTROLLER_ROLE_ARN}|${{ env.ALB_ROLE_ARN }}|g" \
+              k8s/aws-load-balancer-controller/serviceaccount.yaml | kubectl apply -f -
+          fi
+
+      # Apply Kubernetes Manifests with Interpolated ECR Image Tag
+      - name: Deploy ForgeOps Workloads to EKS
+        run: |
+          # Create / update runtime secret
+          POSTGRES_PASSWORD=$(aws secretsmanager get-secret-value --secret-id "forgeops/${{ env.ENVIRONMENT }}/rds/credentials" --query SecretString --output text 2>/dev/null | grep -o '"password":"[^"]*' | cut -d'"' -f4 || echo "DevSecretPass123!")
+
+          kubectl create secret generic forgeops-runtime \
+            --namespace=forgeops \
+            --from-literal=POSTGRES_PASSWORD="$POSTGRES_PASSWORD" \
+            --from-literal=GITHUB_TOKEN="${{ secrets.FORGEOPS_GITHUB_TOKEN || '' }}" \
+            --from-literal=GITHUB_CLIENT_ID="${{ secrets.FORGEOPS_GITHUB_CLIENT_ID || '' }}" \
+            --from-literal=GITHUB_CLIENT_SECRET="${{ secrets.FORGEOPS_GITHUB_CLIENT_SECRET || '' }}" \
+            --dry-run=client -o yaml | kubectl apply -f -
+
+          # Apply ConfigMap
+          sed -e "s|\${AWS_REGION}|${{ env.AWS_REGION }}|g" \
+              -e "s|\${TECHDOCS_S3_BUCKET}|${{ env.TECHDOCS_BUCKET }}|g" \
+              k8s/forgeops/configmap.yaml | kubectl apply -f -
+
+          # Apply Workload Specifications
+          kubectl apply -f k8s/forgeops/serviceaccount.yaml
+          kubectl apply -f k8s/forgeops/service.yaml
+          kubectl apply -f k8s/forgeops/pdb.yaml
+          kubectl apply -f k8s/forgeops/autoscaling.yaml
+          kubectl apply -f k8s/forgeops/servicemonitor.yaml
+
+          # Inject ECR Image into Deployment and Apply
+          sed "s|\${FORGEOPS_IMAGE}|${{ env.FORGEOPS_IMAGE }}|g" k8s/forgeops/deployment.yaml | kubectl apply -f -
+          kubectl apply -f k8s/forgeops/ingress.yaml
+
+      # Wait for rollout and verify health check
+      - name: Verify Rollout and Application Health
+        run: |
+          echo "Waiting for ForgeOps deployment rollout..."
+          if ! kubectl rollout status deployment/forgeops -n forgeops --timeout=180s; then
+            echo "Deployment rollout failed!" >&2
+            kubectl get pods -n forgeops -l app.kubernetes.io/name=forgeops
+            kubectl logs deployment/forgeops -n forgeops --tail=50 >&2
+            exit 1
+          fi
+
+          echo "Resolving ALB Ingress address..."
+          ALB_HOSTNAME=""
+          for i in $(seq 1 30); do
+            ALB_HOSTNAME=$(kubectl get ingress forgeops -n forgeops -o jsonpath='{.status.loadBalancer.ingress[0].hostname}' 2>/dev/null || true)
+            if [ -n "$ALB_HOSTNAME" ]; then
+              break
+            fi
+            echo "Waiting for ALB DNS hostname ($i/30)..."
+            sleep 6
+          done
+
+          if [ -z "$ALB_HOSTNAME" ]; then
+            ALB_HOSTNAME="pending-alb-provisioning"
+          fi
+
+          echo "### ForgeOps Deployment Successful! :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "- **EKS Cluster:** \`${{ env.EKS_CLUSTER_NAME }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **Deployed Image:** \`${{ env.FORGEOPS_IMAGE }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "- **ForgeOps URL:** [http://${ALB_HOSTNAME}](http://${ALB_HOSTNAME})" >> $GITHUB_STEP_SUMMARY
+          echo "- **Health Endpoint:** [http://${ALB_HOSTNAME}/api/health](http://${ALB_HOSTNAME}/api/health)" >> $GITHUB_STEP_SUMMARY

@@ -3,7 +3,10 @@
  * Provides unified request timeout, structured error handling, and backend connectivity detection.
  */
 
-export const BACKEND_URL = 'http://localhost:7007';
+export const BACKEND_URL =
+  typeof window !== 'undefined' && window.location && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1'
+    ? window.location.origin
+    : 'http://localhost:7007';
 
 export interface ApiError {
   type: 'BACKEND_OFFLINE' | 'BACKSTAGE_UNAVAILABLE' | 'TIMEOUT' | 'SERVER_ERROR' | 'NETWORK_ERROR';

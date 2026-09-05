@@ -9,7 +9,7 @@ ERRORS=0
 
 echo "=== Running Dockerfile Security Validation ==="
 
-for df in $(find . -name "Dockerfile" -not -path "*/node_modules/*"); do
+for df in $(find . -name "Dockerfile" -not -path "*/node_modules/*" -not -path "*/tmp/*"); do
   echo "Inspecting ${df}..."
 
   # 1. Non-root user check

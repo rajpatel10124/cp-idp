@@ -18,6 +18,7 @@ import {
 import { TaskScheduler } from '@backstage/backend-tasks';
 import { Config } from '@backstage/config';
 import { CatalogBuilder } from '@backstage/plugin-catalog-backend';
+import { createRouter as createAppRouter } from '@backstage/plugin-app-backend';
 import { createRouter as createScaffolderRouter } from '@backstage/plugin-scaffolder-backend';
 import { createRouter as createAuthRouter } from '@backstage/plugin-auth-backend';
 import { createRouter as createProxyRouter } from '@backstage/plugin-proxy-backend';
@@ -2552,9 +2553,25 @@ async function main() {
 
   apiRouter.use(notFoundHandler());
 
+  const appEnv = useHotMemoize(module, () => createEnv('app'));
+  let appRouter: express.Router | undefined;
+  try {
+    appRouter = await createAppRouter({
+      logger: appEnv.logger,
+      config: appEnv.config,
+      appPackageName: 'app',
+    });
+  } catch (err: any) {
+    logger.warn(`App backend router initialization notice: ${err.message}`);
+  }
+
   const service = createServiceBuilder(module)
     .loadConfig(config)
     .addRouter('/api', apiRouter);
+
+  if (appRouter) {
+    service.addRouter('', appRouter);
+  }
 
   await service.start().catch(err => {
     logger.error(`Backend service failed to start: ${err}`);

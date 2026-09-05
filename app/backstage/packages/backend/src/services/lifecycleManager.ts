@@ -11,6 +11,17 @@ import {
 
 const execPromise = util.promisify(exec);
 
+export interface ServiceOwnershipMetadata {
+  service_id: string;
+  provisioning_id: string;
+  environment: string;
+  cloud_provider: 'aws' | 'azure' | 'local';
+  cluster: string;
+  namespace: string;
+  deployment: string;
+  image_repository: string;
+}
+
 export interface OwnedResource {
   type: 'KUBERNETES' | 'ECR' | 'GITHUB' | 'SHARED_PLATFORM';
   id: string;
@@ -19,6 +30,7 @@ export interface OwnedResource {
   scope: 'SERVICE_OWNED' | 'SHARED_PLATFORM';
   status: 'ACTIVE' | 'DRIFTED' | 'NOT_FOUND' | 'DELETING' | 'DELETED' | 'FAILED';
   details?: string;
+  metadata?: Partial<ServiceOwnershipMetadata>;
 }
 
 export interface ResourceDiscoveryPlan {
@@ -173,6 +185,33 @@ export async function discoverServiceResources(
     scope: 'SHARED_PLATFORM',
     status: 'ACTIVE',
     details: 'Shared Platform Telemetry (PROTECTED)',
+  });
+  sharedPlatformResources.push({
+    type: 'SHARED_PLATFORM',
+    id: 'aws-shared-alb',
+    name: 'AWS Application Load Balancer (forgeops-alb)',
+    kind: 'ApplicationLoadBalancer',
+    scope: 'SHARED_PLATFORM',
+    status: 'ACTIVE',
+    details: 'Shared Public Entry Point (PROTECTED)',
+  });
+  sharedPlatformResources.push({
+    type: 'SHARED_PLATFORM',
+    id: 'aws-shared-ecr',
+    name: 'Shared Container Registry (ECR)',
+    kind: 'ContainerRegistry',
+    scope: 'SHARED_PLATFORM',
+    status: 'ACTIVE',
+    details: 'Shared ECR Repositories (PROTECTED)',
+  });
+  sharedPlatformResources.push({
+    type: 'SHARED_PLATFORM',
+    id: 'aws-shared-rds-postgres',
+    name: 'AWS RDS PostgreSQL (forgeops-postgres)',
+    kind: 'RelationalDatabaseService',
+    scope: 'SHARED_PLATFORM',
+    status: 'ACTIVE',
+    details: 'Shared Production Catalog Database (PROTECTED)',
   });
 
   return {

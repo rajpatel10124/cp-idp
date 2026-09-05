@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: forgeops
+  namespace: monitoring
+  labels:
+    release: kube-prometheus-stack
+spec:
+  namespaceSelector:
+    matchNames: [forgeops]
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: forgeops
+  endpoints:
+    - port: http
+      path: /api/health
+      interval: 30s

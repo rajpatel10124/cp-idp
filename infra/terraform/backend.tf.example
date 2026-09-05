@@ -1,0 +1,13 @@
+# ==============================================================================
+# S3 Remote State Backend Configuration (Enabled after running bootstrap)
+# Copy or rename this file to backend.tf and populate with bootstrap outputs:
+#   terraform init -backend-config="bucket=<state_bucket_name>"
+# ==============================================================================
+terraform {
+  backend "s3" {
+    key            = "forgeops/dev/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "forgeops-terraform-locks"
+  }
+}

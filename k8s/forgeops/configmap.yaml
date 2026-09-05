@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: forgeops-config
+  namespace: forgeops
+data:
+  NODE_ENV: production
+  POSTGRES_PORT: "5432"
+  POSTGRES_USER: forgeops
+  POSTGRES_DB: backstage_plugin_catalog
+  AWS_REGION: ${AWS_REGION}
+  TECHDOCS_S3_BUCKET: ${TECHDOCS_S3_BUCKET}
+  PROMETHEUS_URL: http://kube-prometheus-stack-prometheus.monitoring.svc.cluster.local:9090
+  GRAFANA_URL: http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:80
